@@ -1,0 +1,74 @@
+<resources>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="the_tvdb_api_key" translatable="false">D15565209DA1AB62</string>
+    <string name="serie_id_key" translatable="false">intent_serie_id_key</string>
+    <string name="actor_id_key" translatable="false">intent_actor_id_key</string>
+    <string name="next_key" translatable="false">show_next_bundle_key</string>
+    <string name="season_number_key" translatable="false">season_number_intent_key</string>
+    <string name="url_season_key" translatable="false">url_season_image_intent_key</string>
+    <string name="episode_id_key" translatable="false">intent_id_episode_key</string>
+
+
+    <string name="app_name">Traxer</string>
+    <string name="title_activity_main">Traxer</string>
+
+    <!-- Navigation Drawer -->
+    <string name="action_settings">Settings</string>
+    <string name="collection_nav_label">Collection</string>
+    <string name="calendar_nav_label">Calendar</string>
+    <string name="missing_nav_label">You missed it?</string>
+    <string name="statistics_nav_label">Statistics</string>
+    <string name="settings_nav_label">Settings</string>
+    <string name="about_nav_label">About</string>
+    <string name="share_nav_label">Share</string>
+    <string name="other_nav_label">Other</string>
+    <string name="next_out_label">Next out</string>
+    <string name="share_text">text to share</string>
+    <string name="share_title">Share</string>
+    <string name="app_description">Track your tv shows</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Search show -->
+    <string name="search_hint">Digit Tv Show</string>
+    <string name="search_activity_title">Search Serie</string>
+    <string name="search_empty_view_text">NO RESULT</string>
+    <string name="add_serie_btn">Add</string>
+    <string name="already_add_text">Alredy added</string>
+
+    <!-- Statistics -->
+    <string name="total_serie_label">Total TV Shows</string>
+    <string name="time_total_label">Time spent watching the episodes</string>
+    <string name="hours_label">Hours</string>
+    <string name="days_label">Days</string>
+    <string name="minutes_label">Minutes</string>
+    <string name="total_episode_label">Total episodes</string>
+
+    <!-- Collection -->
+    <string name="colelction_serie_empty">No serie</string>
+
+    <!-- Details -->
+    <string name="tab_1_title">Next</string>
+    <string name="tab_2_title">Info</string>
+    <string name="tab_3_title">Seasons</string>
+    <string name="tab_4_title">Cast</string>
+    <string name="label_rating">Rating</string>
+    <string name="label_overview">Overview</string>
+    <string name="label_status">Status</string>
+    <string name="label_network">Network</string>
+    <string name="label_time">Time</string>
+    <string name="label_total_season">Total season</string>
+    <string name="label_total_episode">Total episodes</string>
+    <string name="label_first_aired">First aired</string>
+    <string name="label_genre">Genre</string>
+    <string name="menu_watch">Set all episode as watch</string>
+    <string name="menu_unwatch">Set all episode as unwatch</string>
+    <string name="menu_delete">Delete Serie</string>
+
+    <!-- Episodes -->
+    <string name="label_no_episodes">No episodes</string>
+
+
+
+</resources>

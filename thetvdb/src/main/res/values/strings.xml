@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">The TVDB</string>
+    <string name="server_time_thetvdb_prefs_key" translatable="false">server_time_thetvdb</string>
+</resources>

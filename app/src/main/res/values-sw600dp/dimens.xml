@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="collection_column" type="integer">4</item>
+    <item name="season_column" type="integer">4</item>
+    <item name="cast_columns" type="integer">2</item>
+    <item name="episode_columns" type="integer">2</item>
+
+    <dimen name="chart_height">600dp</dimen>
+</resources>

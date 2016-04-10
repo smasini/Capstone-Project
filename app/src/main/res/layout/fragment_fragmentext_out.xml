@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.fragments.NextOutFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_episodes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/recyclerview_episodes_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="italic|bold"
+        android:text="@string/label_no_episodes" />
+
+</FrameLayout>

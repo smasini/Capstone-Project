@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_collection"
+            android:checked="true"
+            android:icon="@drawable/ic_collections_bookmark_black_24dp"
+            android:title="@string/collection_nav_label" />
+        <item
+            android:visible="false"
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_today_black_24dp"
+            android:title="@string/calendar_nav_label" />
+        <item
+            android:id="@+id/nav_missing"
+            android:icon="@drawable/ic_today_black_24dp"
+            android:title="@string/missing_nav_label" />
+        <item
+            android:id="@+id/nav_next"
+            android:icon="@drawable/ic_watch_later_black_24dp"
+            android:title="@string/next_out_label" />
+        <item
+            android:id="@+id/nav_statistic"
+            android:icon="@drawable/ic_equalizer_black_24dp"
+            android:title="@string/statistics_nav_label" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/settings_nav_label" />
+    </group>
+
+    <item android:title="@string/other_nav_label">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_black_24dp"
+                android:title="@string/about_nav_label" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="@string/share_nav_label" />
+        </menu>
+    </item>
+
+</menu>

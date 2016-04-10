@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="smasini.it.traxer.app.activities.EpisodesActivity">
+
+    <include layout="@layout/collapsing_toolbar_layout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background_default"
+        android:padding="@dimen/padding_default"
+        android:id="@+id/recyclerview_episodes"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <TextView
+        android:id="@+id/recyclerview_empty"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="italic|bold"
+        android:text="@string/label_no_episodes" />
+
+
+</android.support.design.widget.CoordinatorLayout>
