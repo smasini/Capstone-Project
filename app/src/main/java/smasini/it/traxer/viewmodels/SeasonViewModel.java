@@ -5,7 +5,7 @@ package smasini.it.traxer.viewmodels;
  */
 public class SeasonViewModel {
     private String imageUrl;
-    private int number;
+    private int number, totalEpisodes, totalEpisodeWatched;
 
     public String getImageUrl() {
         return imageUrl;
@@ -21,5 +21,21 @@ public class SeasonViewModel {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int getTotalEpisodes() {
+        return totalEpisodes;
+    }
+
+    public void setTotalEpisodes(int totalEpisodes) {
+        this.totalEpisodes = totalEpisodes;
+    }
+
+    public int getTotalEpisodeWatched() {
+        return totalEpisodeWatched;
+    }
+
+    public void setTotalEpisodeWatched(int totalEpisodeWatched) {
+        this.totalEpisodeWatched = totalEpisodeWatched;
     }
 }

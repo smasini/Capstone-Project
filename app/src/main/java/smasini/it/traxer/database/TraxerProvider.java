@@ -45,6 +45,10 @@ public class TraxerProvider extends ContentProvider {
     static final int EPISODE_NEXT_OUT = 115;
     static final int EPISODE_MISS = 116;
     static final int EPISODE_WITH_SERIEID = 117;
+    static final int COUNT_EPISODE_TOTAL_BY_SEASON = 118;
+    static final int COUNT_EPISODE_WATCH_BY_SEASON = 119;
+    static final int COUNT_EPISODE_TOTAL_BY_SERIE = 120;
+    static final int COUNT_SEASON_TOTAL_BY_SERIE = 121;
 
 
     private static final SQLiteQueryBuilder sTimeQueryBuilder, sSerieQueryBuilder, sEpisodeQueryBuilder, sSeasonQueryBuilder, sCastQueryBuilder, sBannerQueryBuilder;
@@ -81,6 +85,10 @@ public class TraxerProvider extends ContentProvider {
 
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/all/watch", COUNT_EPISODE_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/all", COUNT_EPISODE);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/total/*", COUNT_SEASON_TOTAL_BY_SERIE);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/watch/*/*", COUNT_EPISODE_WATCH_BY_SEASON);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/*/*", COUNT_EPISODE_TOTAL_BY_SEASON);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/total/*", COUNT_EPISODE_TOTAL_BY_SERIE);
         matcher.addURI(authority, BaseContract.PATH_SERIE + "/count/all", COUNT_SERIE);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/time/watch", TIME_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/nextout", EPISODE_NEXT_OUT);
@@ -154,6 +162,41 @@ public class TraxerProvider extends ContentProvider {
                 projection,
                 selection,
                 null,
+                null,
+                null,
+                null
+        );
+    }
+
+    private Cursor countEpisodeBySerie(String idSerie, boolean season){
+        String[] projection = new String[]{ "count(*) as count" };
+        String selection = EpisodeContract.sSerieIdSelection;
+        String[] selectionArgs = new String[]{ idSerie };
+        String group = null;
+        if(season){
+            group = EpisodeContract.COL_SEASON_NUMBER;
+        }
+        return sEpisodeQueryBuilder.query(db,
+                projection,
+                selection,
+                selectionArgs,
+                group,
+                null,
+                null
+        );
+    }
+
+    private Cursor countEpisodeBySerieAndSeason(String idSerie, String idSeason, boolean watch){
+        String[] projection = new String[]{ "count(*) as count" };
+        String selection = EpisodeContract.sSeasonSelection;
+        String[] selectionArgs = new String[]{ idSerie, idSeason };
+        if(watch){
+            selection += " and " + EpisodeContract.COL_WATCH + " = 1 ";
+        }
+        return sEpisodeQueryBuilder.query(db,
+                projection,
+                selection,
+                selectionArgs,
                 null,
                 null,
                 null
@@ -277,7 +320,7 @@ public class TraxerProvider extends ContentProvider {
                 projection,
                 selection,
                 null,
-                null,//EpisodeContract.COL_SERIE_ID,
+                null,
                 null,
                 null
         );
@@ -336,6 +379,24 @@ public class TraxerProvider extends ContentProvider {
                 break;
             case EPISODE_MISS:
                 retCursor = getEpisodes(projection, sortOrder, false);
+                break;
+            case COUNT_EPISODE_TOTAL_BY_SERIE:
+                String id = uri.getPathSegments().get(4);
+                retCursor = countEpisodeBySerie(id, false);
+                break;
+            case COUNT_EPISODE_TOTAL_BY_SEASON:
+                id = uri.getPathSegments().get(4);
+                String season = uri.getPathSegments().get(5);
+                retCursor = countEpisodeBySerieAndSeason(id, season, false);
+                break;
+            case COUNT_EPISODE_WATCH_BY_SEASON:
+                id = uri.getPathSegments().get(5);
+                season = uri.getPathSegments().get(6);
+                retCursor = countEpisodeBySerieAndSeason(id, season, true);
+                break;
+            case COUNT_SEASON_TOTAL_BY_SERIE:
+                id = uri.getPathSegments().get(5);
+                retCursor = countEpisodeBySerie(id, true);
                 break;
             default:
                 retCursor = null;

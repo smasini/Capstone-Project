@@ -88,11 +88,13 @@ public class EpisodeContract {
         if(Utility.getLanguage().equals(Utility.DEFAULT_LANGUAGE)){
             projection = new String[]{
                     EpisodeContract.COL_SEASON_NUMBER,
+                    TABLE_NAME + "." + EpisodeContract.COL_SERIE_ID,
                     String.format(BannerContract.SEASON_BANNER_SELECTION, Utility.getLanguage(), Utility.getLanguage())
             };
         }else{
             projection = new String[]{
                     EpisodeContract.COL_SEASON_NUMBER,
+                    TABLE_NAME + "." + EpisodeContract.COL_SERIE_ID,
                     String.format(BannerContract.SEASON_BANNER_SELECTION, Utility.getLanguage(), Utility.getLanguage()),
                     String.format(BannerContract.SEASON_BANNER_SELECTION, Utility.DEFAULT_LANGUAGE, Utility.DEFAULT_LANGUAGE),
             };
@@ -116,6 +118,22 @@ public class EpisodeContract {
             return CONTENT_URI.buildUpon().appendPath("count").appendPath("all").appendPath("watch").build();
         }
         return CONTENT_URI.buildUpon().appendPath("count").appendPath("all").build();
+    }
+
+    public static Uri buildCountUri(String idSerie) {
+        return CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("total").appendPath(idSerie).build();
+    }
+
+    public static Uri buildCountSeasonUri(String idSerie) {
+        return CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("season").appendPath("total").appendPath(idSerie).build();
+    }
+
+    public static Uri buildCountUri(String idSerie, String seasonNumber, boolean watch) {
+        Uri.Builder builder = CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("season");
+        if(watch){
+            builder.appendPath("watch");
+        }
+        return builder.appendPath(idSerie).appendPath(seasonNumber).build();
     }
 
     public static Uri buildTimeUri() {

@@ -24,6 +24,7 @@ import com.squareup.picasso.Target;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.DetailFragmentPagerAdapter;
 import smasini.it.traxer.database.DBOperation;
+import smasini.it.traxer.notification.NotificationHelper;
 import smasini.it.traxer.viewmodels.DetailSerieViewModel;
 
 public class DetailSerieActivity extends AppCompatActivity {
@@ -83,6 +84,7 @@ public class DetailSerieActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.action_delete:
+                NotificationHelper.enableNotification(this);
                 return true;
             case android.R.id.home:
                 onBackPressed();

@@ -7,6 +7,7 @@ public class EpisodeItemViewModel {
 
     private String id, name, imageUrl, date, serieName;
     private int number, seasonNumber;
+    private boolean watch;
 
     public String getId() {
         return id;
@@ -62,5 +63,13 @@ public class EpisodeItemViewModel {
 
     public void setSeasonNumber(int seasonNumber) {
         this.seasonNumber = seasonNumber;
+    }
+
+    public boolean isWatch() {
+        return watch;
+    }
+
+    public void setWatch(boolean watch) {
+        this.watch = watch;
     }
 }

@@ -1,7 +1,9 @@
 package smasini.it.traxer.app.fragments;
 
 import android.os.Bundle;
+import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.support.Language;
 import smasini.it.thetvdb.task.callbacks.CallbackLanguage;
 import smasini.it.traxer.R;
+import smasini.it.traxer.notification.NotificationHelper;
 
 
 /**
@@ -37,16 +40,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        CheckBoxPreference notificationPrefs = (CheckBoxPreference) findPreference(getString(R.string.prefs_notification_key));
+        notificationPrefs.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                boolean enable = (boolean)o;
+                if(enable){
+                    NotificationHelper.enableNotification(getActivity());
+                }else{
+                    NotificationHelper.disableNotification(getActivity());
+                }
+                return false;
+            }
+        });
     }
-/*
-
-
-       <ListPreference
-        android:key="language"
-        android:title="@string/language"
-        android:defaultValue=""
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null" />
-
-*/
 }

@@ -201,12 +201,16 @@ public class DBOperation {
         while(cursor.moveToNext()){
             SeasonViewModel svm = new SeasonViewModel();
             int seasonNumber = cursor.getInt(cursor.getColumnIndex(EpisodeContract.COL_SEASON_NUMBER));
+            String serieid = cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_SERIE_ID));
             svm.setNumber(seasonNumber);
             String urlLocalized = cursor.getString(cursor.getColumnIndex(BannerContract.COL_URL + "_" + Utility.getLanguage()));
             if(urlLocalized != null && !urlLocalized.equals(""))
                     svm.setImageUrl(urlLocalized);
             else
                 svm.setImageUrl(cursor.getString(cursor.getColumnIndex(BannerContract.COL_URL + "_" + Utility.DEFAULT_LANGUAGE)));
+            svm.setTotalEpisodes(getCount(EpisodeContract.buildCountUri(serieid, ""+seasonNumber, false)));
+            svm.setTotalEpisodeWatched(getCount(EpisodeContract.buildCountUri(serieid, ""+seasonNumber, true)));
+
             seasons.add(svm);
         }
         cursor.close();
@@ -243,8 +247,13 @@ public class DBOperation {
             isvm.setGenre(cursor.getString(cursor.getColumnIndex(SerieContract.COL_GENRE)));
             isvm.setNetwork(cursor.getString(cursor.getColumnIndex(SerieContract.COL_NETWORK)));
             isvm.setTime(cursor.getString(cursor.getColumnIndex(SerieContract.COL_RUNTIME)));
-            isvm.setSeasons(5);
-            isvm.setEpisodes(100);
+
+            Cursor c = Application.getStaticApplicationContext().getContentResolver().query(EpisodeContract.buildCountSeasonUri(id), null, null, null, null);
+            if(c!=null) {
+                isvm.setSeasons(c.getCount());
+                c.close();
+            }
+            isvm.setEpisodes(getCount(EpisodeContract.buildCountUri(id)));
             cursor.close();
         }
         return isvm;
@@ -273,6 +282,7 @@ public class DBOperation {
                 eivm.setSerieName(cursor.getString(cursor.getColumnIndex(SerieContract.COL_NAME)));
                 eivm.setName(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_NAME)));
                 eivm.setDate(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_FIRST_AIRED)));
+                eivm.setWatch(cursor.getInt(cursor.getColumnIndex(EpisodeContract.COL_WATCH)) == 1);
                 if(season){
                     eivm.setImageUrl(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_FILENAME)));
                 }else {

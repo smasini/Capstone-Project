@@ -1,6 +1,7 @@
 package smasini.it.traxer.utils;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import smasini.it.traxer.R;
@@ -81,5 +82,13 @@ public class Utility {
             return "Extra";
         }
         return "Season " + seasonNumber;
+    }
+
+    public static int getColor(int res){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return Application.getStaticApplicationContext().getColor(res);
+        }else{
+            return Application.getStaticApplicationContext().getResources().getColor(R.color.green_500);
+        }
     }
 }
