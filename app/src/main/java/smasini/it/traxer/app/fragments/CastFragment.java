@@ -2,6 +2,7 @@ package smasini.it.traxer.app.fragments;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
     private final int CAST_LOADER_ID = 1;
     private CastAdapter adapter;
     private  String serieid;
+    private RecyclerView recyclerView;
 
     public CastFragment() { }
 
@@ -44,7 +46,7 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_cast, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_cast);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_cast);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.cast_columns), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
 
@@ -62,6 +64,13 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
         serieid = getArguments().getString(getString(R.string.serie_id_key));
 
         return rootView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.cast_columns), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
     }
 
     @Override

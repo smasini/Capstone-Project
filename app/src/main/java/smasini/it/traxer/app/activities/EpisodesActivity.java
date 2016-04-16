@@ -1,6 +1,7 @@
 package smasini.it.traxer.app.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,6 +41,7 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
     private String serieid;
     private int seasonNumber;
     private EpisodesAdapter adapter;
+    private RecyclerView recyclerView;
     private final int EPISODE_LOADER_ID = 1;
 
     @Override
@@ -95,7 +98,7 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_episodes);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_episodes);
         View emptyView = findViewById(R.id.recyclerview_empty);
         if(recyclerView!=null){
             StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
@@ -112,6 +115,13 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
             recyclerView.setAdapter(adapter);
         }
         getSupportLoaderManager().initLoader(EPISODE_LOADER_ID, null, this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
     }
 
     @Override
@@ -135,5 +145,16 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.swapData(new ArrayList<EpisodeItemViewModel>());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,6 +1,7 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
     private final int EPISODES_LOADER_ID = 1;
     private NextOutAdapter adapter;
     private boolean showNext;
+    private RecyclerView recyclerView;
 
     public NextOutFragment() { }
 
@@ -38,7 +40,7 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_fragmentext_out, container, false);
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_episodes);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_episodes);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
         View emptyView = rootView.findViewById(R.id.recyclerview_episodes_empty);
@@ -48,6 +50,13 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
         showNext = getArguments().getBoolean(getString(R.string.next_key), false);
 
         return rootView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
     }
 
     @Override

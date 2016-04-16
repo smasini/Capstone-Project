@@ -8,6 +8,10 @@
     <string name="season_number_key" translatable="false">season_number_intent_key</string>
     <string name="url_season_key" translatable="false">url_season_image_intent_key</string>
     <string name="episode_id_key" translatable="false">intent_id_episode_key</string>
+    <string name="language_key" translatable="false">prefes_language_key</string>
+    <string name="prefs_episode_style_key" translatable="false">prefes_episode_key</string>
+    <string name="prefs_special_episode_key" translatable="false">prefes_special_episode_key</string>
+    <string name="prefs_notification_key" translatable="false">prefes_notification_key</string>
 
 
     <string name="app_name">Traxer</string>
@@ -65,10 +69,28 @@
     <string name="menu_watch">Set all episode as watch</string>
     <string name="menu_unwatch">Set all episode as unwatch</string>
     <string name="menu_delete">Delete Serie</string>
+    <string name="snackbar_all_watch">All episode are watched</string>
+    <string name="snackbar_all_unwatch">All episode are unwatched</string>
 
     <!-- Episodes -->
     <string name="label_no_episodes">No episodes</string>
+    <string name="snap_episode_watch">Episode setted as watch</string>
+    <string name="snap_episode_unwatch">Episode set as unwatch</string>
 
+
+    <!-- Settings -->
+    <string name="general_category">General</string>
+    <string name="default_language">en</string>
+    <string name="language_title">Language</string>
+    <string name="language_subtitle">Select the language of the contents</string>
+    <string name="pref_episode_title">Episode style</string>
+    <string name="pref_episode_subtitle">Select the episode number style</string>
+    <string name="default_episode_style">S01E01</string>
+    <string name="pref_special_episode_title">Episode extra</string>
+    <string name="pref_special_episode_subtitle">Include in the count special episodes</string>
+    <string name="pref_notification_title">Notification</string>
+    <string name="pref_notification_on">Notification enabled</string>
+    <string name="pref_notification_off">Notification disabled</string>
 
 
 </resources>

@@ -2,6 +2,7 @@ package smasini.it.traxer.app.fragments;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     private final int SEASONS_LOADER_ID = 2;
     private SeasonAdapter adapter;
     private  String serieid;
+    private RecyclerView recyclerView;
 
     public SeasonsFragment() { }
 
@@ -41,7 +43,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seasons, container, false);
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_seasons);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_seasons);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.season_column), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
 
@@ -94,5 +96,12 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.swapData(new ArrayList<SeasonViewModel>());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.season_column), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
     }
 }

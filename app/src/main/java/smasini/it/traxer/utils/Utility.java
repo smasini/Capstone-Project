@@ -1,5 +1,9 @@
 package smasini.it.traxer.utils;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import smasini.it.traxer.R;
 import smasini.it.traxer.viewmodels.TimeViewModel;
 
 /**
@@ -12,16 +16,32 @@ public class Utility {
     public static final String DEFAULT_LANGUAGE = "en";
 
     public static String formatEpisode(int episode, int season){
-        String txt = "S";
-        if(season < 10){
-            txt += "0";
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Application.getStaticApplicationContext());
+        String format = sp.getString(Application.getStaticApplicationContext().getString(R.string.prefs_episode_style_key), Application.getStaticApplicationContext().getString(R.string.default_episode_style));
+        String txt = "";
+        switch (format){
+            case "S01E01":
+                txt = String.format("S%02dE%02d", season, episode);
+                break;
+            case "s01e01":
+                txt = String.format("s%02de%02d", season, episode);
+                break;
+            case "S1E1":
+                txt = String.format("S%dE%d", season, episode);
+                break;
+            case "s1e1":
+                txt = String.format("s%de%d", season, episode);
+                break;
+            case "01x01":
+                txt = String.format("%02dx%02d", season, episode);
+                break;
+            case "1x01":
+                txt = String.format("%dx%02d", season, episode);
+                break;
+            case "1x1":
+                txt = String.format("%dx%d", season, episode);
+                break;
         }
-        txt += season;
-        txt += "E";
-        if(episode < 10){
-            txt += "0";
-        }
-        txt += episode;
         return txt;
     }
 

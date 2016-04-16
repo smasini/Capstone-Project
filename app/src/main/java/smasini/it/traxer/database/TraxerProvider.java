@@ -33,7 +33,7 @@ public class TraxerProvider extends ContentProvider {
     static final int ACTOR = 103;
     static final int CAST = 104;
     static final int EPISODE_WITH_ID = 105;
-    static final int EPISODE_WITH_SERIEID = 106;
+    static final int EPISODE_SEASONS = 106;
     static final int ACTOR_WITH_ID = 107;
     static final int ACTOR_WITH_SERIEID = 108;
     static final int BANNER = 109;
@@ -44,6 +44,7 @@ public class TraxerProvider extends ContentProvider {
     static final int TIME_WATCH = 114;
     static final int EPISODE_NEXT_OUT = 115;
     static final int EPISODE_MISS = 116;
+    static final int EPISODE_WITH_SERIEID = 117;
 
 
     private static final SQLiteQueryBuilder sTimeQueryBuilder, sSerieQueryBuilder, sEpisodeQueryBuilder, sSeasonQueryBuilder, sCastQueryBuilder, sBannerQueryBuilder;
@@ -84,7 +85,8 @@ public class TraxerProvider extends ContentProvider {
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/time/watch", TIME_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/nextout", EPISODE_NEXT_OUT);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/miss", EPISODE_MISS);
-        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/seasons/*", EPISODE_WITH_SERIEID);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/seasons/*", EPISODE_SEASONS);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/serieid/*", EPISODE_WITH_SERIEID);
 
         matcher.addURI(authority, BaseContract.PATH_SERIE, SERIE);
         matcher.addURI(authority, BaseContract.PATH_SERIE+ "/*", SERIE_WITH_ID);
@@ -188,12 +190,27 @@ public class TraxerProvider extends ContentProvider {
         String id = EpisodeContract.getIdSerieFromUri(uri);
         String[] selectionArgs = new String[]{id};
         String selection = EpisodeContract.sSerieIdSelection;
-
         Cursor c = sSeasonQueryBuilder.query(db,
                 projection,
                 selection,
                 selectionArgs,
                 EpisodeContract.COL_SEASON_NUMBER,
+                null,
+                sortOrder
+        );
+
+        return c;
+    }
+
+    private Cursor getEpisodeBySerie(Uri uri, String[] projection, String sortOrder){
+        String id = EpisodeContract.getIdSerieFromUri(uri);
+        String[] selectionArgs = new String[]{id};
+        String selection = EpisodeContract.sSerieIdSelection;
+        Cursor c = sEpisodeQueryBuilder.query(db,
+                projection,
+                selection,
+                selectionArgs,
+                null,
                 null,
                 sortOrder
         );
@@ -288,6 +305,9 @@ public class TraxerProvider extends ContentProvider {
                 retCursor = getEpisodesBySerieID(uri, projection, sortOrder);
                 break;
             case EPISODE_WITH_SERIEID:
+                retCursor = getEpisodeBySerie(uri, projection, sortOrder);
+                break;
+            case EPISODE_SEASONS:
                 retCursor = getSeasons(uri, projection, sortOrder);
                 break;
             case ACTOR_WITH_ID:

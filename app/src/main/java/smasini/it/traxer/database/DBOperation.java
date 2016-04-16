@@ -311,4 +311,19 @@ public class DBOperation {
         Application.getStaticApplicationContext().getContentResolver().update(EpisodeContract.CONTENT_URI, cv, EpisodeContract.sEpisodeIdSelection, new String[]{idEpisode});
     }
 
+    public static Cursor getEpisodeBySerie(String idSerie){
+        Uri uri = EpisodeContract.buildEpisodeBySerieUri(idSerie);
+        return Application.getStaticApplicationContext().getContentResolver().query(uri, EpisodeContract.COLUMNS, null, null, null);
+    }
+
+    public static void updateAllWatch(String idSerie, boolean isWatch){
+        Cursor c = getEpisodeBySerie(idSerie);
+        if(c!=null){
+            while (c.moveToNext()){
+                String idEpisode = c.getString(c.getColumnIndex(EpisodeContract.COL_ID));
+                updateWatch(idEpisode, isWatch);
+            }
+            c.close();
+        }
+    }
 }

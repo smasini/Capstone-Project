@@ -142,6 +142,10 @@ public class EpisodeContract {
         return CONTENT_URI.buildUpon().appendPath(id).build();
     }
 
+    public static Uri buildEpisodeBySerieUri(String id){
+        return CONTENT_URI.buildUpon().appendPath("serieid").appendPath(id).build();
+    }
+
     public static final String sSerieIdSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? ";
 
     public static final String sSeasonSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? AND " +
@@ -158,7 +162,6 @@ public class EpisodeContract {
     public static String getIdEpisodeFromUri(Uri uri) {
         return uri.getPathSegments().get(1);
     }
-
     public static String getIdSerieFromUri(Uri uri) {
         return uri.getPathSegments().get(2);
     }

@@ -15,13 +15,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import smasini.it.traxer.R;
 import smasini.it.traxer.app.fragments.CalendarFragment;
 import smasini.it.traxer.app.fragments.CollectionFragment;
 import smasini.it.traxer.app.fragments.NextOutFragment;
+import smasini.it.traxer.app.fragments.SettingsFragment;
 import smasini.it.traxer.app.fragments.StatisticFragment;
 import smasini.it.traxer.utils.UIUtility;
 
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     fragment.setArguments(args);
                     break;
                 case "settings_fragment":
-                    fragment = new CalendarFragment();
+                    fragment = new SettingsFragment();
                     break;
             }
         }

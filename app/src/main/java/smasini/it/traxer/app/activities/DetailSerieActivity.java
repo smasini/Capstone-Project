@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -74,10 +75,17 @@ public class DetailSerieActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.action_all_watch:
+                DBOperation.updateAllWatch(serieID, true);
+                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.action_all_unwatch:
+                DBOperation.updateAllWatch(serieID, false);
+                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.action_delete:
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

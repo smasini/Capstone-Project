@@ -2,6 +2,7 @@ package smasini.it.traxer.app.fragments;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
 
     private final int COLLECTION_LOADER_ID = 1;
     private CollectionSerieAdapter adapter;
+    private RecyclerView recyclerView;
 
     public CollectionFragment() { }
 
@@ -43,7 +45,7 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_collection, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_collection_serie);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_collection_serie);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.collection_column), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
         View emptyView = rootView.findViewById(R.id.recyclerview_collection_empty);
@@ -63,12 +65,17 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
             }
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.collection_column), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
     }
 
     @Override

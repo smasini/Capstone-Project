@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ep_styles">
+        <item>S01E01</item>
+        <item>s01e01</item>
+        <item>S1E1</item>
+        <item>s1e1</item>
+        <item>01x01</item>
+        <item>1x01</item>
+        <item>1x1</item>
+    </string-array>
+    <string-array name="ep_styles_values">
+        <item>S01E01</item>
+        <item>s01e01</item>
+        <item>S1E1</item>
+        <item>s1e1</item>
+        <item>01x01</item>
+        <item>1x01</item>
+        <item>1x1</item>
+    </string-array>
+</resources>
