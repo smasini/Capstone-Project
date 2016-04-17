@@ -18,11 +18,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import smasini.it.traxer.R;
-import smasini.it.traxer.app.fragments.CalendarFragment;
 import smasini.it.traxer.app.fragments.CollectionFragment;
 import smasini.it.traxer.app.fragments.NextOutFragment;
 import smasini.it.traxer.app.fragments.SettingsFragment;
 import smasini.it.traxer.app.fragments.StatisticFragment;
+import smasini.it.traxer.sync.TraxerSyncAdapter;
 import smasini.it.traxer.utils.UIUtility;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_WRITE_EXTERNAL);
         }
+
+        TraxerSyncAdapter.syncImmediately(this);
     }
 
     @Override
@@ -122,9 +124,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             switch (tag) {
                 case "collection_fragment":
                     fragment = new CollectionFragment();
-                    break;
-                case "calendar_fragment":
-                    fragment = new CalendarFragment();
                     break;
                 case "statistic_fragment":
                     fragment = new StatisticFragment();

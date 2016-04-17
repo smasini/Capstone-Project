@@ -26,6 +26,7 @@ import smasini.it.traxer.app.activities.ActorDetailActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.ActorContract;
 import smasini.it.traxer.database.contract.CastContract;
+import smasini.it.traxer.enums.UriQueryType;
 import smasini.it.traxer.viewmodels.CastViewModel;
 
 /**
@@ -87,7 +88,7 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Uri uri = CastContract.buildSeasonUri(serieid);
+        Uri uri = CastContract.buildUri(UriQueryType.CAST_WITH_SERIEID, new String[]{serieid});
         return new CursorLoader(getActivity(),
                 uri,
                 ActorContract.COLUMNS,

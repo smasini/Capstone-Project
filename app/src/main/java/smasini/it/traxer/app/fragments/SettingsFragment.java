@@ -1,10 +1,10 @@
 package smasini.it.traxer.app.fragments;
 
 import android.os.Bundle;
-import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.SwitchPreferenceCompat;
 
 import java.util.List;
 
@@ -24,8 +24,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.preferences);
 
-        TheTVDB theTVDB = new TheTVDB(getActivity(), getString(R.string.the_tvdb_api_key));
-        theTVDB.getLanguages(new CallbackLanguage() {
+        TheTVDB.getInstance().getLanguages(new CallbackLanguage() {
             @Override
             public void doAfterTask(List<Language> languages) {
                 ListPreference language = (ListPreference) findPreference(getString(R.string.language_key));
@@ -40,7 +39,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        CheckBoxPreference notificationPrefs = (CheckBoxPreference) findPreference(getString(R.string.prefs_notification_key));
+        ListPreference language = (ListPreference) findPreference(getString(R.string.language_key));
+        language.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                String language = (String)o;
+                TheTVDB.getInstance().changeLanguage(language);
+                return true;
+            }
+        });
+
+        SwitchPreferenceCompat notificationPrefs = (SwitchPreferenceCompat) findPreference(getString(R.string.prefs_notification_key));
         notificationPrefs.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
@@ -50,7 +59,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 }else{
                     NotificationHelper.disableNotification(getActivity());
                 }
-                return false;
+                return true;
             }
         });
     }

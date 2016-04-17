@@ -28,7 +28,7 @@ public class SeasonAdapter extends BaseAdapter<SeasonViewModel> {
         myViewHolder.seasonName.setText(Utility.formatSeasonName(viewModel.getNumber()));
         myViewHolder.progressBar.setMax(viewModel.getTotalEpisodes());
         myViewHolder.progressBar.setProgress(viewModel.getTotalEpisodeWatched());
-        int perc = viewModel.getTotalEpisodeWatched() * 100 / viewModel.getTotalEpisodes();
+        int perc = viewModel.getTotalEpisodeWatched() == 0 ? 0 : viewModel.getTotalEpisodeWatched() * 100 / viewModel.getTotalEpisodes();
         myViewHolder.seasonPercent.setText(String.format("%d", perc));
         if(viewModel.getImageUrl() != null && !viewModel.getImageUrl().equals("")){
             Picasso.with(mContext)

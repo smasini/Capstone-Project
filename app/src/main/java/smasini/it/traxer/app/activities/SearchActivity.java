@@ -62,8 +62,7 @@ public class SearchActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             UIUtility.showProgressDialog(this, "Loading...");
-            TheTVDB theTVDB = new TheTVDB(this, getString(R.string.the_tvdb_api_key));
-            theTVDB.findSeriesByName(query, new CallbackSerie() {
+            TheTVDB.getInstance().findSeriesByName(query, new CallbackSerie() {
                 @Override
                 public void doAfterTask(List<Serie> series) {
                     UIUtility.hideProgressDialog();

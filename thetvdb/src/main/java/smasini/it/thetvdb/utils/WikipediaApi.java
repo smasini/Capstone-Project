@@ -39,7 +39,7 @@ public class WikipediaApi {
             urlConnection.connect();
             InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -76,21 +76,13 @@ public class WikipediaApi {
                     if(item!=null){
                         String extract = item.optString("extract");
                         if(extract!=null && !extract.equals("")){
-                            return parseHTMLWiki(extract);
+                            return extract;
                         }
                     }
                 }
             }
         }
         return "";
-    }
-
-    private String parseHTMLWiki(String text){
-     /*   text = text.replace("<ul>","<p>");
-        text = text.replace("</ul>","</p>");
-        text = text.replace("<li>","- ");
-        text = text.replace("</li>","<br />");*/
-        return text;
     }
 
     private String encodeName(String s){

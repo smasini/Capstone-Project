@@ -14,8 +14,8 @@ import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.app.activities.MainActivity;
-import smasini.it.traxer.utils.Application;
 
 /**
  * Created by Simone Masini on 16/04/2016.
@@ -25,9 +25,8 @@ public class NotificationHelper {
     public static void enableNotification(Context context){
         Intent notificationIntent = new Intent(context, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        int delay = 1000 * 60 * 60 * 24;
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        int delay = 1000 * 60 * 60 * 24; //after the first check, check every 24 hours
+        long futureInMillis = SystemClock.elapsedRealtime() + 1000*60*60*2; //first check in 2 hours
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, delay, pendingIntent);
     }

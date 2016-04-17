@@ -25,16 +25,18 @@ public class TaskActor extends AsyncTask<Void, Void, List<Actor>> {
 
     private String url;
     private CallbackActor callback;
+    private String language;
 
-    public TaskActor(String path, CallbackActor callback){
+    public TaskActor(String path, String language, CallbackActor callback){
         this.url = String.format("%sactors.xml", path);
         this.callback = callback;
+        this.language = language;
     }
 
     @Override
     protected List<Actor> doInBackground(Void... params) {
         List<Actor> actorList = new ArrayList<>();
-        WikipediaApi wikipediaApi = new WikipediaApi();
+        WikipediaApi wikipediaApi = new WikipediaApi(language);
         Document document = XMLHelper.openXML(url, false);
         try{
             NodeList actors = document.getElementsByTagName("Actor");

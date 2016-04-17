@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import smasini.it.traxer.enums.UriQueryType;
+
 /**
  * Created by Utente on 31/03/2016.
  */
@@ -19,8 +21,8 @@ public class CastContract {
             COL_SERIEID + " text, " +
             COL_ROLE + " text, " +
             "primary key (" + COL_ACTOR_ID +"," + COL_SERIEID +  "), " +
-            "foreign key (" + COL_ACTOR_ID + ") references " + ActorContract.TABLE_NAME + "(" + ActorContract.COL_ID + ")," +
-            "foreign key (" + COL_SERIEID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ")" +
+            "foreign key (" + COL_ACTOR_ID + ") references " + ActorContract.TABLE_NAME + "(" + ActorContract.COL_ID + ") on delete cascade ," +
+            "foreign key (" + COL_SERIEID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ") on delete cascade " +
             ");";
 
     public static final String DROP_TABLE = "drop table if exists " + TABLE_NAME;
@@ -37,8 +39,18 @@ public class CastContract {
         return ContentUris.withAppendedId(CONTENT_URI, id);
     }
 
-    public static Uri buildSeasonUri(String id) {
-        return CONTENT_URI.buildUpon().appendPath("serieid").appendPath(id).build();
+    public static Uri buildUri(UriQueryType type){
+        return buildUri(type, null);
+    }
+
+    public static Uri buildUri(UriQueryType type, String[] params){
+        Uri.Builder builder = CONTENT_URI.buildUpon();
+        switch (type){
+            case CAST_WITH_SERIEID:
+                builder.appendPath("serieid").appendPath(params[0]);
+                break;
+        }
+        return builder.build();
     }
 
     public static final String sSerieIdSelection =  "" + COL_SERIEID + " = ? ";

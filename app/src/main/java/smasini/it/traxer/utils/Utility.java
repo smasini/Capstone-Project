@@ -5,6 +5,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.viewmodels.TimeViewModel;
 
 /**
@@ -90,5 +91,10 @@ public class Utility {
         }else{
             return Application.getStaticApplicationContext().getResources().getColor(R.color.green_500);
         }
+    }
+
+    public static boolean includeExtra(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Application.getStaticApplicationContext());
+        return sp.getBoolean(Application.getStaticApplicationContext().getString(R.string.prefs_special_episode_key), false);
     }
 }

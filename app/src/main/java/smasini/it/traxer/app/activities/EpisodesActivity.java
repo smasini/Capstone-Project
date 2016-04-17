@@ -33,6 +33,7 @@ import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.EpisodesAdapter;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.EpisodeContract;
+import smasini.it.traxer.enums.UriQueryType;
 import smasini.it.traxer.utils.Utility;
 import smasini.it.traxer.viewmodels.EpisodeItemViewModel;
 
@@ -127,7 +128,7 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String sortOrder = EpisodeContract.COL_NUMBER + " ASC";
-        Uri uri = EpisodeContract.buildSeasonSerieUri(serieid, ""+seasonNumber);
+        Uri uri = EpisodeContract.buildUri(UriQueryType.EPISODES_BY_SERIE_AND_SEASON, new String[]{serieid, ""+seasonNumber});
         return new CursorLoader(this,
                 uri,
                 EpisodeContract.COLUMNS_WHIT_SERIE,

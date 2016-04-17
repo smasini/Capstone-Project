@@ -1,9 +1,12 @@
-package smasini.it.traxer.utils;
+package smasini.it.traxer.app;
 
 import android.content.Context;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 
+import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.utils.DownloadManager;
+import smasini.it.traxer.R;
 
 /**
  * Project: Traxer
@@ -25,6 +28,8 @@ public class Application extends android.app.Application {
         if(ok){
             DownloadManager.nomedia(sdDirectory);
         }
+        String language = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(getString(R.string.language_key), getString(R.string.default_language));
+        TheTVDB.init(applicationContext, applicationContext.getString(R.string.the_tvdb_api_key), language);
     }
 
     public static Context getStaticApplicationContext() {

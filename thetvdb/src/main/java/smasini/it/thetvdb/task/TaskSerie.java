@@ -26,19 +26,50 @@ public class TaskSerie extends AsyncTask<Void, Void, List<Serie>> {
     private String url;
     private boolean isOnline;
     private CallbackSerie callback;
+    private boolean update = false;
+    private List<String> idSeries = new ArrayList<>();
+    private String language;
 
     public TaskSerie(String mirror, String name, String language){
         this.url = String.format("%s/api/GetSeries.php?seriesname=%s&language=%s", mirror, name, language);
         this.isOnline = true;
+        this.update = false;
+        this.language = language;
     }
 
     public TaskSerie(String path, String language){
         this.url = String.format("%s%s.xml", path, language);
         this.isOnline = false;
+        this.update = false;
+        this.language = language;
+    }
+
+    public TaskSerie(String mirror, String apikey, String language, List<String> idSeries){
+        this.url = String.format("%s/api/%s/series/%s/all/%s.xml", mirror, apikey, "ID_SERIE_TO_REPLACE", language);
+        this.isOnline = true;
+        this.update = true;
+        this.idSeries = idSeries;
+        this.language = language;
     }
 
     @Override
     protected List<Serie> doInBackground(Void... params) {
+        if(update){
+            List<Serie> serieList = new ArrayList<>();
+            for(String id : idSeries){
+                String url = this.url.replace("ID_SERIE_TO_REPLACE", id);
+                List<Serie> serieTemp = readXML(url);
+                if(serieTemp!=null && serieTemp.size()>0) {
+                    serieList.add(serieTemp.get(0));
+                }
+            }
+            return serieList;
+        }else{
+            return readXML(this.url);
+        }
+    }
+
+    private List<Serie> readXML(String url){
         List<Serie> serieList = new ArrayList<>();
         Document document = XMLHelper.openXML(url, isOnline);
         try {
@@ -73,8 +104,21 @@ public class TaskSerie extends AsyncTask<Void, Void, List<Serie>> {
     @Override
     protected void onPostExecute(List<Serie> series) {
         super.onPostExecute(series);
-        if(callback!=null)
-            callback.doAfterTask(series);
+        if(!update && series.size() > 1){
+            List<Serie> newSeries = new ArrayList<>();
+            List<String> ids = new ArrayList<>();
+            for(int i = 0; i < series.size(); i++){
+                if(!ids.contains(series.get(i).getSeriesid())){
+                    ids.add(series.get(i).getSeriesid());
+                    newSeries.add(series.get(i));
+                }
+            }
+            if(callback!=null)
+                callback.doAfterTask(newSeries);
+        }else{
+            if(callback!=null)
+                callback.doAfterTask(series);
+        }
     }
 
     public void setCallback(CallbackSerie callback) {

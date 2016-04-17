@@ -91,6 +91,11 @@
     <string name="pref_notification_title">Notification</string>
     <string name="pref_notification_on">Notification enabled</string>
     <string name="pref_notification_off">Notification disabled</string>
+    <string name="sync_account_type">traxer.smasini.it</string>
+    <string name="content_authority">smasini.it.traxer</string>
 
+    <!-- Notification -->
+    <string name="notification_title">Traxer - Episodes out!</string>
+    <string name="notification_message" formatted="false">Today came out %d episodes</string>
 
 </resources>

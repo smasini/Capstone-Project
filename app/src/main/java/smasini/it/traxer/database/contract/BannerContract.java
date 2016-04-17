@@ -1,6 +1,5 @@
 package smasini.it.traxer.database.contract;
 
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.net.Uri;
 
@@ -29,7 +28,7 @@ public class BannerContract {
             COL_URL + " text, " +
             COL_RATING + " float, " +
             COL_SEASON + " integer, " +
-            "foreign key (" + COL_SERIE_ID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ")" +
+            "foreign key (" + COL_SERIE_ID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ") on delete cascade" +
             ");";
 
     public static final String DROP_TABLE = "drop table if exists " + TABLE_NAME;
@@ -47,18 +46,11 @@ public class BannerContract {
 
     public static final Uri CONTENT_URI = BaseContract.BASE_CONTENT_URI.buildUpon().appendPath(BaseContract.PATH_BANNER).build();
 
-    public static final String CONTENT_TYPE =
-            ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + BaseContract.CONTENT_AUTHORITY + "/" + BaseContract.PATH_BANNER;
-
-    public static final String sSeasonSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? ";
-
     public static Uri buildUri(long id) {
         return ContentUris.withAppendedId(CONTENT_URI, id);
     }
 
-    public static String getIdSerieFromUri(Uri uri) {
-        return uri.getPathSegments().get(1);
-    }
+    public static final String sSerieIdSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? ";
 
     public static final String SEASON_BANNER_SELECTION = "( " +
                                                                 "select " + COL_URL +

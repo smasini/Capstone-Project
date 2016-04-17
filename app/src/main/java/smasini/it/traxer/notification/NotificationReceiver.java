@@ -6,6 +6,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
+import smasini.it.traxer.database.DBOperation;
+
 /**
  * Created by Simone Masini on 16/04/2016.
  */
@@ -16,8 +20,10 @@ public class NotificationReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        //eseguo query nel db per verificare che siano uscite puntate, e in caso mando la notifica
-        Notification notification = NotificationHelper.createNotification("title", "message");
-        notificationManager.notify(NOTIFICATION_ID, notification);
+        int count = DBOperation.getCountEpisodeToday();
+        if(count>0){
+            Notification notification = NotificationHelper.createNotification(Application.getStaticApplicationContext().getString(R.string.notification_title), String.format(Application.getStaticApplicationContext().getString(R.string.notification_message), count));
+            notificationManager.notify(NOTIFICATION_ID, notification);
+        }
     }
 }

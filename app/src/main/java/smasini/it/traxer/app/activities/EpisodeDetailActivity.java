@@ -85,6 +85,7 @@ public class EpisodeDetailActivity extends AppCompatActivity {
             }
         });
 
+        ((TextView)findViewById(R.id.textview_name_episode)).setText(edvm.getName());
         ((TextView)findViewById(R.id.textview_season_episode)).setText(Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()));
         ((TextView)findViewById(R.id.textview_first_aired)).setText(DateUtility.formatDate(edvm.getFirstAired()));
         ((TextView)findViewById(R.id.episode_overview)).setText(edvm.getOverview());

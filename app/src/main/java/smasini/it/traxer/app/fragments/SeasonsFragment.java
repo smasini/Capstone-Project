@@ -25,6 +25,7 @@ import smasini.it.traxer.adapters.SeasonAdapter;
 import smasini.it.traxer.app.activities.EpisodesActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.EpisodeContract;
+import smasini.it.traxer.enums.UriQueryType;
 import smasini.it.traxer.viewmodels.SeasonViewModel;
 
 /**
@@ -78,7 +79,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Uri uri = EpisodeContract.buildSeasonUri(serieid);
+        Uri uri = EpisodeContract.buildUri(UriQueryType.SEASONS_BY_SERIE, new String[]{serieid});
         return new CursorLoader(getActivity(),
                 uri,
                 EpisodeContract.getSeasonProjection(),

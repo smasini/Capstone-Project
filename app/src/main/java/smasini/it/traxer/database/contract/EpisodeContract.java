@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import smasini.it.traxer.enums.UriQueryType;
 import smasini.it.traxer.utils.Utility;
 
 /**
@@ -37,7 +38,7 @@ public class EpisodeContract {
                                                     COL_RATING + " float, " +
                                                     COL_RATE + " text, " +
                                                     COL_WATCH + " integer, " +
-                                                    "foreign key (" + COL_SERIE_ID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ")" +
+                                                    "foreign key (" + COL_SERIE_ID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ") on delete cascade" +
                                             ");";
 
     public static final String DROP_TABLE = "drop table if exists " + TABLE_NAME;
@@ -102,68 +103,76 @@ public class EpisodeContract {
          return projection;
     }
 
-    public static final Uri CONTENT_URI = BaseContract.BASE_CONTENT_URI.buildUpon().appendPath(BaseContract.PATH_EPISODE).build();
 
+    /*Type*/
     public static final String CONTENT_TYPE =
             ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + BaseContract.CONTENT_AUTHORITY + "/" + BaseContract.PATH_EPISODE;
     public static final String CONTENT_ITEM_TYPE =
             ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + BaseContract.CONTENT_AUTHORITY + "/" + BaseContract.PATH_EPISODE;
 
+    /*URI*/
+    public static final Uri CONTENT_URI = BaseContract.BASE_CONTENT_URI.buildUpon().appendPath(BaseContract.PATH_EPISODE).build();
+
     public static Uri buildUri(long id) {
         return ContentUris.withAppendedId(CONTENT_URI, id);
     }
 
-    public static Uri buildCountUri(boolean watch) {
-        if(watch){
-            return CONTENT_URI.buildUpon().appendPath("count").appendPath("all").appendPath("watch").build();
+    public static Uri buildUri(UriQueryType type){
+        return buildUri(type, null);
+    }
+    public static Uri buildUri(UriQueryType type, String[] params){
+        Uri.Builder builder = CONTENT_URI.buildUpon();
+        switch (type){
+            case COUNT_ALL:
+                builder.appendPath("count").appendPath("all");
+                break;
+            case COUNT_ALL_WATCH:
+                builder.appendPath("count").appendPath("all").appendPath("watch");
+                break;
+            case COUNT_ALL_BY_SERIE:
+                builder.appendPath("count").appendPath("idserie").appendPath("total").appendPath(params[0]);
+                break;
+            case COUNT_ALL_TODAY:
+                builder.appendPath("count").appendPath("all").appendPath("today");
+                break;
+            case COUNT_SEASON_NUMBER:
+                builder.appendPath("count").appendPath("idserie").appendPath("season").appendPath("total").appendPath(params[0]);
+                break;
+            case COUNT_SEASON_BY_SERIE:
+                builder.appendPath("count").appendPath("idserie").appendPath("season").appendPath(params[0]).appendPath(params[1]);
+                break;
+            case COUNT_SEASON_WATCH_BY_SERIE:
+                builder.appendPath("count").appendPath("idserie").appendPath("season").appendPath("watch").appendPath(params[0]).appendPath(params[1]);
+                break;
+            case TIME_SPENT_WATCH:
+                builder.appendPath("time").appendPath("watch");
+                break;
+            case EPISODE_MISS:
+                builder.appendPath("miss");
+                break;
+            case EPISODE_NEXT_OUT:
+                builder.appendPath("nextout");
+                break;
+            case SEASONS_BY_SERIE:
+                builder.appendPath("seasons").appendPath(params[0]);
+                break;
+            case EPISODES_BY_SERIE_AND_SEASON:
+                builder.appendPath(params[0]).appendPath(params[1]);
+                break;
+            case EPISODE_BY_ID:
+                builder.appendPath(params[0]);
+                break;
+            case ALL_EPISODES_BY_SERIE:
+                builder.appendPath("serieid").appendPath(params[0]);
+                break;
+            case NEXT_EPISODE_TO_WATCH:
+                builder.appendPath("next").appendPath(params[0]);
+                break;
         }
-        return CONTENT_URI.buildUpon().appendPath("count").appendPath("all").build();
+        return builder.build();
     }
 
-    public static Uri buildCountUri(String idSerie) {
-        return CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("total").appendPath(idSerie).build();
-    }
-
-    public static Uri buildCountSeasonUri(String idSerie) {
-        return CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("season").appendPath("total").appendPath(idSerie).build();
-    }
-
-    public static Uri buildCountUri(String idSerie, String seasonNumber, boolean watch) {
-        Uri.Builder builder = CONTENT_URI.buildUpon().appendPath("count").appendPath("idserie").appendPath("season");
-        if(watch){
-            builder.appendPath("watch");
-        }
-        return builder.appendPath(idSerie).appendPath(seasonNumber).build();
-    }
-
-    public static Uri buildTimeUri() {
-        return CONTENT_URI.buildUpon().appendPath("time").appendPath("watch").build();
-    }
-
-    public static Uri buildMissUri(){
-        return CONTENT_URI.buildUpon().appendPath("miss").build();
-    }
-
-    public static Uri buildNextOutUri(){
-        return CONTENT_URI.buildUpon().appendPath("nextout").build();
-    }
-
-    public static Uri buildSeasonUri(String id) {
-        return CONTENT_URI.buildUpon().appendPath("seasons").appendPath(id).build();
-    }
-
-    public static Uri buildSeasonSerieUri(String id, String season) {
-        return CONTENT_URI.buildUpon().appendPath(id).appendPath(season).build();
-    }
-
-    public static Uri buildEpisodeUri(String id) {
-        return CONTENT_URI.buildUpon().appendPath(id).build();
-    }
-
-    public static Uri buildEpisodeBySerieUri(String id){
-        return CONTENT_URI.buildUpon().appendPath("serieid").appendPath(id).build();
-    }
-
+    /*Selection */
     public static final String sSerieIdSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? ";
 
     public static final String sSeasonSelection = TABLE_NAME + "." + COL_SERIE_ID + " = ? AND " +
@@ -173,9 +182,12 @@ public class EpisodeContract {
 
     public static final String sNextSelection = TABLE_NAME + "." + COL_FIRST_AIRED + " > date('now') ";
 
+    public static final String sTodaySelection = TABLE_NAME + "." + COL_FIRST_AIRED + " = date('now') ";
+
     public static final String sMissingSelection = TABLE_NAME + "." + COL_FIRST_AIRED + " >= date('now', '-30 days') "+
                                                     "and " + TABLE_NAME + "." + COL_FIRST_AIRED + " <= date('now') " +
                                                     "and " + TABLE_NAME + "." + COL_WATCH + " = 0";
+
 
     public static String getIdEpisodeFromUri(Uri uri) {
         return uri.getPathSegments().get(1);

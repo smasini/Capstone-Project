@@ -3,6 +3,8 @@ package smasini.it.traxer.database.contract;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import smasini.it.traxer.enums.UriQueryType;
+
 /**
  * Created by Utente on 31/03/2016.
  */
@@ -44,8 +46,18 @@ public class ActorContract {
         return ContentUris.withAppendedId(CONTENT_URI, id);
     }
 
-    public static Uri buildActorUri(String id) {
-        return CONTENT_URI.buildUpon().appendPath(id).build();
+    public static Uri buildUri(UriQueryType type){
+        return buildUri(type, null);
+    }
+
+    public static Uri buildUri(UriQueryType type, String[] params){
+        Uri.Builder builder = CONTENT_URI.buildUpon();
+        switch (type){
+            case ACTOR_WITH_ID:
+                builder.appendPath(params[0]);
+                break;
+        }
+        return builder.build();
     }
 
     public static final String sActorIdSelection = TABLE_NAME + "." + COL_ID + " = ? ";

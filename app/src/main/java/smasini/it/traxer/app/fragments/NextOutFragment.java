@@ -25,6 +25,7 @@ import smasini.it.traxer.adapters.NextOutAdapter;
 import smasini.it.traxer.app.activities.EpisodeDetailActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.EpisodeContract;
+import smasini.it.traxer.enums.UriQueryType;
 import smasini.it.traxer.viewmodels.EpisodeItemViewModel;
 
 /**
@@ -89,10 +90,10 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
         String sortOrder;
         Uri uri;
         if(showNext){
-            uri = EpisodeContract.buildNextOutUri();
+            uri = EpisodeContract.buildUri(UriQueryType.EPISODE_NEXT_OUT);
             sortOrder = EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_FIRST_AIRED + " ASC";
         }else{
-            uri = EpisodeContract.buildMissUri();
+            uri = EpisodeContract.buildUri(UriQueryType.EPISODE_MISS);
             sortOrder = EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_FIRST_AIRED + " DESC";
         }
         return new CursorLoader(getActivity(),

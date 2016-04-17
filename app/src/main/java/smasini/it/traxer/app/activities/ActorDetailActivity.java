@@ -49,7 +49,7 @@ public class ActorDetailActivity extends AppCompatActivity {
         if(webView!=null){
             String html = "<html><head><style type='text/css'>body{color:#FFFFFF;}</style></head><body>" + advm.getBioHTML() +"</body></html>";
             webView.setBackgroundColor(Color.TRANSPARENT);
-            webView.loadData(html, "text/html", "utf-8");
+            webView.loadData(html, "text/html", "UTF-8");
         }
 
         ImageView photo = (ImageView) findViewById(R.id.photo_action_bar);

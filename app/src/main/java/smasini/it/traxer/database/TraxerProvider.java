@@ -15,6 +15,7 @@ import smasini.it.traxer.database.contract.BaseContract;
 import smasini.it.traxer.database.contract.CastContract;
 import smasini.it.traxer.database.contract.EpisodeContract;
 import smasini.it.traxer.database.contract.SerieContract;
+import smasini.it.traxer.utils.Utility;
 
 /**
  * Project: Traxer
@@ -24,7 +25,6 @@ import smasini.it.traxer.database.contract.SerieContract;
 public class TraxerProvider extends ContentProvider {
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
-    //private DBHelper mOpenHelper;
     private SQLiteDatabase db;
 
     static final int SERIE = 100;
@@ -49,7 +49,8 @@ public class TraxerProvider extends ContentProvider {
     static final int COUNT_EPISODE_WATCH_BY_SEASON = 119;
     static final int COUNT_EPISODE_TOTAL_BY_SERIE = 120;
     static final int COUNT_SEASON_TOTAL_BY_SERIE = 121;
-
+    static final int COUNT_EPISODE_OUT_TODAY = 122;
+    static final int NEXT_EPISODE_TO_WATCH = 123;
 
     private static final SQLiteQueryBuilder sTimeQueryBuilder, sSerieQueryBuilder, sEpisodeQueryBuilder, sSeasonQueryBuilder, sCastQueryBuilder, sBannerQueryBuilder;
 
@@ -84,28 +85,30 @@ public class TraxerProvider extends ContentProvider {
         final String authority = BaseContract.CONTENT_AUTHORITY;
 
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/all/watch", COUNT_EPISODE_WATCH);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/all/today", COUNT_EPISODE_OUT_TODAY);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/all", COUNT_EPISODE);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/total/*", COUNT_SEASON_TOTAL_BY_SERIE);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/watch/*/*", COUNT_EPISODE_WATCH_BY_SEASON);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/season/*/*", COUNT_EPISODE_TOTAL_BY_SEASON);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/total/*", COUNT_EPISODE_TOTAL_BY_SERIE);
-        matcher.addURI(authority, BaseContract.PATH_SERIE + "/count/all", COUNT_SERIE);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/time/watch", TIME_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/nextout", EPISODE_NEXT_OUT);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/miss", EPISODE_MISS);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/seasons/*", EPISODE_SEASONS);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/serieid/*", EPISODE_WITH_SERIEID);
-
-        matcher.addURI(authority, BaseContract.PATH_SERIE, SERIE);
-        matcher.addURI(authority, BaseContract.PATH_SERIE+ "/*", SERIE_WITH_ID);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/next/*", NEXT_EPISODE_TO_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/*/*", EPISODE_WITH_SERIEID_AND_SEASON);
         matcher.addURI(authority, BaseContract.PATH_EPISODE+ "/*", EPISODE_WITH_ID);
         matcher.addURI(authority, BaseContract.PATH_EPISODE, EPISODE);
 
+        matcher.addURI(authority, BaseContract.PATH_SERIE + "/count/all", COUNT_SERIE);
+        matcher.addURI(authority, BaseContract.PATH_SERIE, SERIE);
+        matcher.addURI(authority, BaseContract.PATH_SERIE+ "/*", SERIE_WITH_ID);
+
         matcher.addURI(authority, BaseContract.PATH_ACTOR, ACTOR);
+        matcher.addURI(authority, BaseContract.PATH_ACTOR + "/*", ACTOR_WITH_ID);
         matcher.addURI(authority, BaseContract.PATH_CAST, CAST);
         matcher.addURI(authority, BaseContract.PATH_CAST + "/serieid/*", ACTOR_WITH_SERIEID);
-        matcher.addURI(authority, BaseContract.PATH_ACTOR + "/*", ACTOR_WITH_ID);
         matcher.addURI(authority, BaseContract.PATH_BANNER, BANNER);
         return matcher;
     }
@@ -158,6 +161,13 @@ public class TraxerProvider extends ContentProvider {
         if(watch){
             selection = EpisodeContract.COL_WATCH + " = 1";
         }
+        if(!Utility.includeExtra()){
+            if(selection == null){
+                selection = EpisodeContract.COL_SEASON_NUMBER + " != 0";
+            }else {
+                selection += " and " + EpisodeContract.COL_SEASON_NUMBER + " != 0";
+            }
+        }
         return sEpisodeQueryBuilder.query(db,
                 projection,
                 selection,
@@ -176,6 +186,9 @@ public class TraxerProvider extends ContentProvider {
         if(season){
             group = EpisodeContract.COL_SEASON_NUMBER;
         }
+        if(!Utility.includeExtra()){
+            selection += " and " + EpisodeContract.COL_SEASON_NUMBER + " != 0";
+        }
         return sEpisodeQueryBuilder.query(db,
                 projection,
                 selection,
@@ -192,6 +205,9 @@ public class TraxerProvider extends ContentProvider {
         String[] selectionArgs = new String[]{ idSerie, idSeason };
         if(watch){
             selection += " and " + EpisodeContract.COL_WATCH + " = 1 ";
+        }
+        if(!Utility.includeExtra()){
+            selection += " and " + EpisodeContract.COL_SEASON_NUMBER + " != 0";
         }
         return sEpisodeQueryBuilder.query(db,
                 projection,
@@ -281,6 +297,20 @@ public class TraxerProvider extends ContentProvider {
         return c;
     }
 
+    private Cursor getEpisodesCountToday(){
+        String selection = EpisodeContract.sTodaySelection;
+        Cursor c = sEpisodeQueryBuilder.query(db,
+                new String[]{"count(*) as count"},
+                selection,
+                null,
+                null,
+                null,
+                null
+        );
+
+        return c;
+    }
+
     private Cursor getActor(Uri uri, String[] projection, String sortOrder){
         String id = ActorContract.getIdActorFromUri(uri);
         String[] selectionArgs = new String[]{id};
@@ -315,7 +345,9 @@ public class TraxerProvider extends ContentProvider {
                 "sum(" + SerieContract.TABLE_NAME + "." + SerieContract.COL_RUNTIME + ") as sum"
         };
         String selection = EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_WATCH + " = 1 ";
-
+        if(!Utility.includeExtra()){
+            selection += " and " + EpisodeContract.COL_SEASON_NUMBER + " != 0";
+        }
         return sTimeQueryBuilder.query(db,
                 projection,
                 selection,
@@ -326,6 +358,19 @@ public class TraxerProvider extends ContentProvider {
         );
     }
 
+    private Cursor getNextEpisodes(Uri uri, String[] projection){
+        String id = uri.getPathSegments().get(2);
+        String[] selectionArgs = new String[]{id};
+        String selection = EpisodeContract.sEpisodeIdSelection + " and " + EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_WATCH + " = 0 ";
+        return sEpisodeQueryBuilder.query(db,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                EpisodeContract.COL_FIRST_AIRED
+        );
+    }
     @Override
     public boolean onCreate() {
         DBHelper mOpenHelper = new DBHelper(getContext());
@@ -397,6 +442,12 @@ public class TraxerProvider extends ContentProvider {
             case COUNT_SEASON_TOTAL_BY_SERIE:
                 id = uri.getPathSegments().get(5);
                 retCursor = countEpisodeBySerie(id, true);
+                break;
+            case COUNT_EPISODE_OUT_TODAY:
+                retCursor = getEpisodesCountToday();
+                break;
+            case NEXT_EPISODE_TO_WATCH:
+                retCursor = getNextEpisodes(uri, projection);
                 break;
             default:
                 retCursor = null;
@@ -559,6 +610,9 @@ public class TraxerProvider extends ContentProvider {
                         long _id = db.insert(SerieContract.TABLE_NAME, null, value);
                         if (_id != -1) {
                             returnCount++;
+                        }else{
+                            String id = (String)value.get(SerieContract.COL_ID);
+                            db.update(SerieContract.TABLE_NAME, value, SerieContract.sSerieIdSelection, new String[]{id});
                         }
                     }
                     db.setTransactionSuccessful();
@@ -575,6 +629,9 @@ public class TraxerProvider extends ContentProvider {
                         long _id = db.insert(EpisodeContract.TABLE_NAME, null, value);
                         if (_id != -1) {
                             returnCount++;
+                        }else{
+                            String id = (String)value.get(EpisodeContract.COL_ID);
+                            db.update(EpisodeContract.TABLE_NAME, value, EpisodeContract.sEpisodeIdSelection, new String[]{id});
                         }
                     }
                     db.setTransactionSuccessful();

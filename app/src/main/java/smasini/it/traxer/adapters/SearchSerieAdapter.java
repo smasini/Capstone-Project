@@ -17,7 +17,7 @@ import smasini.it.thetvdb.support.Serie;
 import smasini.it.thetvdb.task.callbacks.CallbackSerieData;
 import smasini.it.traxer.R;
 import smasini.it.traxer.database.DBOperation;
-import smasini.it.traxer.utils.Application;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.utils.DateUtility;
 import smasini.it.traxer.utils.UIUtility;
 
@@ -47,12 +47,11 @@ public class SearchSerieAdapter extends BaseAdapter<Serie>{
             public void onClick(View v) {
                 //avvio il task per tirare giù i dati della serie e la aggiungo al db
                 UIUtility.showProgressDialog(mContext, "Loading...");
-                TheTVDB theTVDB = new TheTVDB(mContext, mContext.getString(R.string.the_tvdb_api_key));
-                theTVDB.getSerieData(viewModel.getSeriesid(), Application.sdDirectory, new CallbackSerieData() {
+                TheTVDB.getInstance().getSerieData(viewModel.getSeriesid(), Application.sdDirectory, new CallbackSerieData() {
                     @Override
                     public void onSerieDataLoad(Serie serie, List<Actor> actors,  List<Banner> banners) {
                         DBOperation.insertSerie(serie);
-                        DBOperation.insertEpisoes(serie.getSeasons());
+                        DBOperation.insertEpisodes(serie.getSeasons());
                         DBOperation.insertActors(actors, serie.getId());
                         DBOperation.insertBanners(banners, serie.getId());
 

@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import smasini.it.traxer.enums.UriQueryType;
+
 /**
  * Project: Traxer
  * Package: smasini.it.traxer.database.contract
@@ -81,12 +83,20 @@ public class SerieContract {
 
     public static final String sSerieIdSelection = TABLE_NAME + "." + COL_ID + " = ? ";
 
-    public static Uri buildSerieUri(String id) {
-        return CONTENT_URI.buildUpon().appendPath(id).build();
+    public static Uri buildUri(UriQueryType type){
+        return buildUri(type, null);
     }
 
-    public static Uri buildCountUri() {
-        return CONTENT_URI.buildUpon().appendPath("count").appendPath("all").build();
+    public static Uri buildUri(UriQueryType type, String[] params){
+        Uri.Builder builder = CONTENT_URI.buildUpon();
+        switch (type){
+            case COUNT_ALL_SERIE:
+                builder.appendPath("count").appendPath("all");
+                break;
+            case SERIE_WITH_ID:
+                builder.appendPath(params[0]);
+        }
+        return builder.build();
     }
 
     public static Uri buildUri(long id) {
