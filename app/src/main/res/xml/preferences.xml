@@ -13,6 +13,13 @@
             android:summary="@string/pref_episode_subtitle"
             android:title="@string/pref_episode_title"
             android:key="@string/prefs_episode_style_key" />
+        <ListPreference
+            android:defaultValue="@string/default_date_format"
+            android:entries="@array/date_format"
+            android:entryValues="@array/date_format_values"
+            android:summary="@string/date_format_subtitle"
+            android:title="@string/date_format_title"
+            android:key="@string/prefs_date_format_key" />
         <CheckBoxPreference
             android:key="@string/prefs_special_episode_key"
             android:summary="@string/pref_special_episode_subtitle"

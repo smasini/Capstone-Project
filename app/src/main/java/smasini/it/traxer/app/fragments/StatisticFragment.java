@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,6 +17,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 
@@ -79,6 +82,31 @@ public class StatisticFragment extends Fragment {
         mChart.setHighlightPerTapEnabled(true);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+
+        mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                // display msg when value selected
+                if (e == null)
+                    return;
+                    String text = "";
+                    switch (e.getXIndex()) {
+                        case 0:
+                            text = String.format(getString(R.string.statistics_episode_unwatched), (int)e.getVal());
+                            break;
+                        case 1:
+                            text = String.format(getString(R.string.statistics_episode_watched), (int)e.getVal());
+                            break;
+                    }
+                Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
 
         Legend l = mChart.getLegend();
         l.setTextColor(getResources().getColor(R.color.text_color));

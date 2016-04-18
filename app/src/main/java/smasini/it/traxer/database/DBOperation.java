@@ -402,6 +402,22 @@ public class DBOperation {
         return Application.getStaticApplicationContext().getContentResolver().query(uri, EpisodeContract.COLUMNS, null, null, null);
     }
 
+    public static Cursor getEpisodeBySerieAndSeason(String idSerie, String numberSeason){
+        Uri uri = EpisodeContract.buildUri(UriQueryType.EPISODES_BY_SERIE_AND_SEASON, new String[]{idSerie, numberSeason});
+        return Application.getStaticApplicationContext().getContentResolver().query(uri, new String[]{EpisodeContract.COL_ID}, null, null, null);
+    }
+
+    public static void updateAllWatch(String idSerie, int season, boolean isWatch){
+        Cursor c = getEpisodeBySerieAndSeason(idSerie, ""+season);
+        if(c!=null){
+            while (c.moveToNext()){
+                String idEpisode = c.getString(c.getColumnIndex(EpisodeContract.COL_ID));
+                updateWatch(idEpisode, isWatch);
+            }
+            c.close();
+        }
+    }
+
     public static void updateAllWatch(String idSerie, boolean isWatch){
         Cursor c = getEpisodeBySerie(idSerie);
         if(c!=null){

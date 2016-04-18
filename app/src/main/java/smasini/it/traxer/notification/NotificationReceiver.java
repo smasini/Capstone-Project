@@ -21,7 +21,10 @@ public class NotificationReceiver extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         int count = DBOperation.getCountEpisodeToday();
-        if(count>0){
+        if(count == 1){
+            Notification notification = NotificationHelper.createNotification(Application.getStaticApplicationContext().getString(R.string.notification_title), Application.getStaticApplicationContext().getString(R.string.notification_message_single));
+            notificationManager.notify(NOTIFICATION_ID, notification);
+        }else if(count>0){
             Notification notification = NotificationHelper.createNotification(Application.getStaticApplicationContext().getString(R.string.notification_title), String.format(Application.getStaticApplicationContext().getString(R.string.notification_message), count));
             notificationManager.notify(NOTIFICATION_ID, notification);
         }

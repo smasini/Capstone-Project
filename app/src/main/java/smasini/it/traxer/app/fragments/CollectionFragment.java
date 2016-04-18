@@ -26,6 +26,7 @@ import smasini.it.traxer.app.activities.DetailSerieActivity;
 import smasini.it.traxer.app.activities.SearchActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.SerieContract;
+import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.SerieCollectionViewModel;
 
 /**
@@ -92,6 +93,7 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        UIUtility.showProgressDialog(getActivity(), R.string.label_loading);
         String sortOrder = SerieContract.COL_NAME + " ASC";
         Uri serieUri = SerieContract.CONTENT_URI;
         return new CursorLoader(getActivity(),
@@ -106,6 +108,7 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
         List<SerieCollectionViewModel> datas = DBOperation.getSerieViewModel(data);
         adapter.swapData(datas);
+        UIUtility.hideProgressDialog();
     }
 
     @Override

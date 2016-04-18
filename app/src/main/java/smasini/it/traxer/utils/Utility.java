@@ -15,7 +15,7 @@ import smasini.it.traxer.viewmodels.TimeViewModel;
  */
 public class Utility {
 
-    public static final String DEFAULT_LANGUAGE = "en";
+    public static final String DEFAULT_LANGUAGE = Application.getStaticApplicationContext().getString(R.string.default_language);
 
     public static String formatEpisode(int episode, int season){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Application.getStaticApplicationContext());
@@ -48,7 +48,8 @@ public class Utility {
     }
 
     public static String getLanguage(){
-        return "it";
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Application.getStaticApplicationContext());
+        return sp.getString(Application.getStaticApplicationContext().getString(R.string.language_key), DEFAULT_LANGUAGE);
     }
 
     public static TimeViewModel formatTime(int time){
@@ -80,9 +81,9 @@ public class Utility {
 
     public static String formatSeasonName(int seasonNumber) {
         if(seasonNumber == 0){
-            return "Extra";
+            return Application.getStaticApplicationContext().getString(R.string.special_season_name);
         }
-        return "Season " + seasonNumber;
+        return String.format(Application.getStaticApplicationContext().getString(R.string.season_number_name), seasonNumber);
     }
 
     public static int getColor(int res){

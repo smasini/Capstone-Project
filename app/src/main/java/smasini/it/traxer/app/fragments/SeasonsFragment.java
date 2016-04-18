@@ -26,6 +26,7 @@ import smasini.it.traxer.app.activities.EpisodesActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.EpisodeContract;
 import smasini.it.traxer.enums.UriQueryType;
+import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.SeasonViewModel;
 
 /**
@@ -79,6 +80,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        UIUtility.showProgressDialog(getActivity(), R.string.label_loading);
         Uri uri = EpisodeContract.buildUri(UriQueryType.SEASONS_BY_SERIE, new String[]{serieid});
         return new CursorLoader(getActivity(),
                 uri,
@@ -92,6 +94,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         List<SeasonViewModel> datas = DBOperation.getSeasonViewModel(data);
         adapter.swapData(datas);
+        UIUtility.hideProgressDialog();
     }
 
     @Override

@@ -18,11 +18,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.app.fragments.CollectionFragment;
 import smasini.it.traxer.app.fragments.NextOutFragment;
 import smasini.it.traxer.app.fragments.SettingsFragment;
 import smasini.it.traxer.app.fragments.StatisticFragment;
-import smasini.it.traxer.sync.TraxerSyncAdapter;
 import smasini.it.traxer.utils.UIUtility;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,8 +36,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        createAndInsertFragment("collection_fragment", R.string.collection_nav_label);
+        boolean isFromNotification = getIntent().getBooleanExtra(Application.getStaticApplicationContext().getString(R.string.main_activity_notificaiton_key), false);
 
+        if(isFromNotification){
+            createAndInsertFragment("missing_fragment", R.string.missing_nav_label);
+        }else {
+            createAndInsertFragment("collection_fragment", R.string.collection_nav_label);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_WRITE_EXTERNAL);
         }
 
-        TraxerSyncAdapter.syncImmediately(this);
+       // TraxerSyncAdapter.syncImmediately(this);
     }
 
     @Override

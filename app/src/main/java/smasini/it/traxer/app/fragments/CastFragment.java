@@ -27,6 +27,7 @@ import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.ActorContract;
 import smasini.it.traxer.database.contract.CastContract;
 import smasini.it.traxer.enums.UriQueryType;
+import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.CastViewModel;
 
 /**
@@ -88,19 +89,21 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        UIUtility.showProgressDialog(getActivity(), R.string.label_loading);
         Uri uri = CastContract.buildUri(UriQueryType.CAST_WITH_SERIEID, new String[]{serieid});
         return new CursorLoader(getActivity(),
                 uri,
                 ActorContract.COLUMNS,
                 null,
                 null,
-                null);
+                ActorContract.COL_SORT_ORDER);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         List<CastViewModel> datas = DBOperation.getCastViewModel(data);
         adapter.swapData(datas);
+        UIUtility.hideProgressDialog();
     }
 
     @Override

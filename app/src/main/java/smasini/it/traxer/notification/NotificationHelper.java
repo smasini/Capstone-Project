@@ -42,6 +42,7 @@ public class NotificationHelper {
 
     public static Notification createNotification(String title, String message) {
         Intent intent = new Intent(Application.getStaticApplicationContext(), MainActivity.class);
+        intent.putExtra(Application.getStaticApplicationContext().getString(R.string.main_activity_notificaiton_key), true);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(Application.getStaticApplicationContext(), 0 /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
 

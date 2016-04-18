@@ -24,6 +24,7 @@ import com.squareup.picasso.Target;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.DetailFragmentPagerAdapter;
 import smasini.it.traxer.database.DBOperation;
+import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.DetailSerieViewModel;
 
 public class DetailSerieActivity extends AppCompatActivity {
@@ -75,12 +76,16 @@ public class DetailSerieActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.action_all_watch:
+                UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieID, true);
                 Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
+                UIUtility.hideProgressDialog();
                 return true;
             case R.id.action_all_unwatch:
+                UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieID, false);
                 Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
+                UIUtility.hideProgressDialog();
                 return true;
             case R.id.action_delete:
                 DBOperation.deleteSerie(serieID);

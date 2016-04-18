@@ -46,7 +46,7 @@ public class SearchSerieAdapter extends BaseAdapter<Serie>{
             @Override
             public void onClick(View v) {
                 //avvio il task per tirare giù i dati della serie e la aggiungo al db
-                UIUtility.showProgressDialog(mContext, "Loading...");
+                UIUtility.showProgressDialog(mContext, R.string.label_loading);
                 TheTVDB.getInstance().getSerieData(viewModel.getSeriesid(), Application.sdDirectory, new CallbackSerieData() {
                     @Override
                     public void onSerieDataLoad(Serie serie, List<Actor> actors,  List<Banner> banners) {

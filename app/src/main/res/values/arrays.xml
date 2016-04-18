@@ -18,4 +18,32 @@
         <item>1x01</item>
         <item>1x1</item>
     </string-array>
+    <string-array name="date_format">
+        <item>yyyy-MM-dd</item>
+        <item>MM-dd-yyyy</item>
+        <item>dd-MM-yyyy</item>
+        <item>yy-MM-dd</item>
+        <item>MM-dd-yy</item>
+        <item>dd-MM-yy</item>
+        <item>yyyy/MM/dd</item>
+        <item>MM/dd/yyyy</item>
+        <item>dd/MM/yyyy</item>
+        <item>yy/MM/dd</item>
+        <item>MM/dd/yy</item>
+        <item>dd/MM/yy</item>
+    </string-array>
+    <string-array name="date_format_values">
+        <item>yyyy-MM-dd</item>
+        <item>MM-dd-yyyy</item>
+        <item>dd-MM-yyyy</item>
+        <item>yy-MM-dd</item>
+        <item>MM-dd-yy</item>
+        <item>dd-MM-yy</item>
+        <item>yyyy/MM/dd</item>
+        <item>MM/dd/yyyy</item>
+        <item>dd/MM/yyyy</item>
+        <item>yy/MM/dd</item>
+        <item>MM/dd/yy</item>
+        <item>dd/MM/yy</item>
+    </string-array>
 </resources>

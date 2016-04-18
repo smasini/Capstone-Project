@@ -4,6 +4,18 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/episodes_activity_menu.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/serie.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
@@ -29,132 +41,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TraxerSyncAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/TraxerSyncAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
-              <folding>
-                <element signature="e#1869#2044#0" expanded="true" />
-                <element signature="e#2043#2044#0" expanded="true" />
-                <element signature="method#getSyncAccount#0;class#TraxerSyncAdapter#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NextWatchDetailFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextWatchDetailFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="127" selection-start-line="43" selection-start-column="127" selection-end-line="43" selection-end-column="127" />
-              <folding>
-                <element signature="e#942#974#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActorDetailActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActorDetailActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/ActorDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64187646">
-              <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/task/TaskActor.java">
+      <file leaf-file-name="DetailSerieActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/DetailSerieActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBOperation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="359" column="0" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.37653816">
+              <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
               <folding>
-                <element signature="method#insertEpisodes#0;class#DBOperation#0" expanded="false" />
-                <element signature="method#insertActors#0;class#DBOperation#0" expanded="false" />
-                <element signature="method#insertBanners#0;class#DBOperation#0" expanded="false" />
-                <element signature="method#getSerieViewModel#0;class#DBOperation#0" expanded="false" />
-                <element signature="method#existSerieWithId#0;class#DBOperation#0" expanded="false" />
+                <element signature="e#1356#1388#0" expanded="true" />
+                <element signature="e#2820#2842#0" expanded="true" />
+                <element signature="e#2970#2997#0" expanded="true" />
+                <element signature="e#3199#3221#0" expanded="true" />
+                <element signature="e#3350#3379#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UriQueryType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/enums/UriQueryType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TraxerProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/TraxerProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="364" column="0" selection-start-line="364" selection-start-column="0" selection-end-line="364" selection-end-column="0" />
-              <folding>
-                <element signature="method#getEpisodesBySerieIDAndSeason#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#countEpisode#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#countEpisodeBySerie#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#countEpisodeBySerieAndSeason#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#countSerie#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getEpisodesBySerieID#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getSeasons#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getEpisodeBySerie#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getEpisodes#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getEpisodesCountToday#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getActor#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getCast#0;class#TraxerProvider#0" expanded="false" />
-                <element signature="method#getTimeWatch#0;class#TraxerProvider#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_next_watch_detail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_next_watch_detail.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.345454">
-              <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-              <folding>
-                <element signature="e#316#340#0" expanded="true" />
-                <element signature="e#610#634#0" expanded="true" />
-                <element signature="e#1616#1639#0" expanded="true" />
-                <element signature="e#1676#1699#0" expanded="true" />
-                <element signature="e#1762#1786#0" expanded="true" />
-                <element signature="e#2675#3920#0" expanded="false" />
-                <element signature="e#2863#2887#0" expanded="true" />
-                <element signature="e#3332#3356#0" expanded="true" />
-                <element signature="e#3559#3583#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -164,10 +73,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="resourceFile" />
         <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -2536,32 +2445,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/season_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/viewmodels/EpisodeItemViewModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/Application.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/episode_season_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/episode_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/NextOutAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/EpisodesAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/SyncService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/syncadapter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/Authenticator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/AuthenticatorService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/authenticator.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextOutFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SeasonsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/EpisodesActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationReceiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/DetailSerieActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/SerieContract.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CastFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/CastContract.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/ActorContract.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/Utility.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/SearchSerieAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/SearchActivity.java" />
         <option value="$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/support/Update.java" />
         <option value="$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/support/UpdateType.java" />
@@ -2573,7 +2466,6 @@
         <option value="$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/TheTVDB.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/SeasonAdapter.java" />
         <option value="$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/task/TaskSerie.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/BannerContract.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/TraxerSyncAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_episode_detail.xml" />
@@ -2581,12 +2473,29 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_next_watch_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/enums/UriQueryType.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/EpisodeContract.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/TraxerProvider.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextWatchDetailFragment.java" />
         <option value="$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/utils/WikipediaApi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/ActorDetailActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/StatisticFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/SearchSerieAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CollectionFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/UIUtility.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextOutFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SeasonsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CastFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/Utility.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/preferences.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/DateUtility.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/TraxerProvider.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/episodes_activity_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/DetailSerieActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/EpisodesActivity.java" />
       </list>
     </option>
   </component>
@@ -2639,10 +2548,6 @@
               <option name="myItemId" value="Capstone-Project" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2650,52 +2555,12 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Capstone-Project" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Capstone-Project" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thetvdb" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2706,6 +2571,14 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2738,6 +2611,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="traxer" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Capstone-Project" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="traxer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2906,11 +2801,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Capstone-Project" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3202,8 +3107,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="2" width="2572" height="1405" extended-state="1" />
-    <editor active="true" />
+    <frame x="-7" y="2" width="2572" height="1405" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287891" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3211,7 +3116,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.276664" sideWeight="0.5047771" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.276664" sideWeight="0.49522293" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.276664" sideWeight="0.49522293" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329591" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3248,130 +3153,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java</url>
-          <line>238</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java</url>
-          <line>360</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java</url>
-          <line>359</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/authenticator.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02849958">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/syncadapter.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02849958">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/AuthenticatorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13945857">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/Authenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47415915">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/SyncService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36259228">
-          <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.423077">
-          <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SeasonsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33285713">
-          <caret line="81" column="72" selection-start-line="81" selection-start-column="72" selection-end-line="81" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/EpisodesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="111" selection-start-line="130" selection-start-column="111" selection-end-line="130" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22313371">
-          <caret line="24" column="252" selection-start-line="24" selection-start-column="252" selection-end-line="24" selection-end-column="252" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/DetailSerieActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24692371">
-          <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/SerieContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8326497">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/ActorContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76702213">
-          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="125" selection-start-line="97" selection-start-column="125" selection-end-line="97" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/support/UpdateType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11156686">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/support/Update.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12551272">
@@ -3383,10 +3169,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40442985">
           <caret line="37" column="88" selection-start-line="37" selection-start-column="88" selection-end-line="37" selection-end-column="88" />
-          <folding>
-            <element signature="e#544#545#0" expanded="false" />
-            <element signature="e#582#583#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3415,16 +3197,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.292863">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CollectionFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76702213">
-          <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -3435,23 +3207,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2075472">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1254#1255#0" expanded="false" />
-            <element signature="e#1295#1296#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3467,7 +3226,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6275636">
           <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3476,17 +3234,6 @@
         <state vertical-scroll-proportion="0.23872027">
           <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/SearchSerieAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.390484">
-          <caret line="49" column="72" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="72" />
-          <folding>
-            <element signature="e#2025#2703#0" expanded="false" />
-            <element signature="e#2702#2703#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3501,22 +3248,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2528604">
-          <caret line="28" column="94" selection-start-line="28" selection-start-column="94" selection-end-line="28" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/task/TaskSerie.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
-          <folding>
-            <element signature="method#parseEpisode#0;class#TaskSerie#0" expanded="false" />
-            <element signature="method#parseSerie#0;class#TaskSerie#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3524,17 +3259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#1023#1055#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3542,14 +3266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="93" selection-start-line="52" selection-start-column="93" selection-end-line="52" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextOutFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56767845">
-          <caret line="92" column="73" selection-start-line="92" selection-start-column="73" selection-end-line="92" selection-end-column="73" />
           <folding />
         </state>
       </provider>
@@ -3601,50 +3317,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_next_watch_detail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.345454">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-          <folding>
-            <element signature="e#316#340#0" expanded="true" />
-            <element signature="e#610#634#0" expanded="true" />
-            <element signature="e#1616#1639#0" expanded="true" />
-            <element signature="e#1676#1699#0" expanded="true" />
-            <element signature="e#1762#1786#0" expanded="true" />
-            <element signature="e#2675#3920#0" expanded="false" />
-            <element signature="e#2863#2887#0" expanded="true" />
-            <element signature="e#3332#3356#0" expanded="true" />
-            <element signature="e#3559#3583#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/TraxerSyncAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
-          <folding>
-            <element signature="e#1869#2044#0" expanded="true" />
-            <element signature="e#2043#2044#0" expanded="true" />
-            <element signature="method#getSyncAccount#0;class#TraxerSyncAdapter#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/EpisodeContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5397867">
-          <caret line="168" column="63" selection-start-line="168" selection-start-column="63" selection-end-line="168" selection-end-column="63" />
-          <folding>
-            <element signature="e#8610#8611#0" expanded="true" />
-            <element signature="e#8661#8662#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/CastContract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.585726">
@@ -3653,40 +3325,309 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CastFragment.java">
+    <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/utils/WikipediaApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.488105">
-          <caret line="64" column="77" selection-start-line="64" selection-start-column="77" selection-end-line="64" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.3638444">
+          <caret line="39" column="94" selection-start-line="39" selection-start-column="94" selection-end-line="39" selection-end-column="94" />
+          <folding>
+            <element signature="e#589#590#0" expanded="false" />
+            <element signature="e#629#630#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/task/TaskActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20918787">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40442985">
+          <caret line="44" column="124" selection-start-line="44" selection-start-column="124" selection-end-line="44" selection-end-column="124" />
+          <folding>
+            <element signature="e#1982#2074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextWatchDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41837573">
+          <caret line="43" column="127" selection-start-line="43" selection-start-column="127" selection-end-line="43" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/sync/TraxerSyncAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42821985">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+          <folding>
+            <element signature="e#1869#2044#0" expanded="false" />
+            <element signature="e#2043#2044#0" expanded="false" />
+            <element signature="method#getSyncAccount#0;class#TraxerSyncAdapter#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_next_watch_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35738832">
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+          <folding>
+            <element signature="e#2675#3920#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
+          <caret line="38" column="166" selection-start-line="38" selection-start-column="166" selection-end-line="38" selection-end-column="166" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1361556">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/notification/NotificationReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22313371">
+          <caret line="24" column="250" selection-start-line="24" selection-start-column="250" selection-end-line="24" selection-end-column="250" />
+          <folding>
+            <element signature="e#857#937#0" expanded="true" />
+            <element signature="e#939#1028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5020509">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/adapters/SearchSerieAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="78" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
+          <folding>
+            <element signature="e#1909#1931#0" expanded="true" />
+            <element signature="e#2035#2713#0" expanded="true" />
+            <element signature="e#2712#2713#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/UIUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CollectionFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5284327">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="76" />
+          <folding>
+            <element signature="e#1876#1930#0" expanded="true" />
+            <element signature="e#2480#2512#0" expanded="true" />
+            <element signature="e#3205#3259#0" expanded="true" />
+            <element signature="e#3868#3890#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/StatisticFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="61" selection-start-line="137" selection-start-column="61" selection-end-line="137" selection-end-column="61" />
+          <folding>
+            <element signature="e#3475#3523#0" expanded="true" />
+            <element signature="e#3659#3705#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextOutFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="39" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+          <folding>
+            <element signature="e#1658#1686#0" expanded="true" />
+            <element signature="e#1859#1911#0" expanded="true" />
+            <element signature="e#2438#2472#0" expanded="true" />
+            <element signature="e#2868#2920#0" expanded="true" />
+            <element signature="e#3498#3520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/ActorDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34864643">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="e#458#536#0" expanded="true" />
+            <element signature="method#formatEpisode#0;class#Utility#0" expanded="false" />
+            <element signature="method#getLanguage#0;class#Utility#0" expanded="false" />
+            <element signature="e#2010#2084#0" expanded="true" />
+            <element signature="method#formatTime#0;class#Utility#0" expanded="false" />
+            <element signature="method#formatSeasonName#0;class#Utility#0" expanded="false" />
+            <element signature="e#2803#2884#0" expanded="true" />
+            <element signature="e#2925#3005#0" expanded="true" />
+            <element signature="method#getColor#0;class#Utility#0" expanded="false" />
+            <element signature="method#includeExtra#0;class#Utility#0" expanded="false" />
+            <element signature="e#3537#3624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5011792">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60048723">
+          <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36084905">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding>
+            <element signature="e#155#181#0" expanded="true" />
+            <element signature="e#240#266#0" expanded="true" />
+            <element signature="e#295#322#0" expanded="true" />
+            <element signature="e#349#373#0" expanded="true" />
+            <element signature="e#398#420#0" expanded="true" />
+            <element signature="e#481#512#0" expanded="true" />
+            <element signature="e#646#677#0" expanded="true" />
+            <element signature="e#704#732#0" expanded="true" />
+            <element signature="e#757#790#0" expanded="true" />
+            <element signature="e#851#880#0" expanded="true" />
+            <element signature="e#1018#1048#0" expanded="true" />
+            <element signature="e#1075#1102#0" expanded="true" />
+            <element signature="e#1127#1158#0" expanded="true" />
+            <element signature="e#1214#1249#0" expanded="true" />
+            <element signature="e#1278#1317#0" expanded="true" />
+            <element signature="e#1344#1380#0" expanded="true" />
+            <element signature="e#1440#1472#0" expanded="true" />
+            <element signature="e#1504#1535#0" expanded="true" />
+            <element signature="e#1566#1596#0" expanded="true" />
+            <element signature="e#1623#1656#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SettingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23340961">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <folding>
+            <element signature="e#1023#1055#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/enums/UriQueryType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/CastFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="359" column="0" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9204266">
+          <caret line="105" column="39" selection-start-line="105" selection-start-column="39" selection-end-line="105" selection-end-column="39" />
           <folding>
-            <element signature="method#insertEpisodes#0;class#DBOperation#0" expanded="false" />
-            <element signature="method#insertActors#0;class#DBOperation#0" expanded="false" />
-            <element signature="method#insertBanners#0;class#DBOperation#0" expanded="false" />
-            <element signature="method#getSerieViewModel#0;class#DBOperation#0" expanded="false" />
-            <element signature="method#existSerieWithId#0;class#DBOperation#0" expanded="false" />
+            <element signature="e#1790#1839#0" expanded="true" />
+            <element signature="e#2262#2294#0" expanded="true" />
+            <element signature="e#2467#2499#0" expanded="true" />
+            <element signature="e#2737#2786#0" expanded="true" />
+            <element signature="e#3356#3378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/SeasonsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77686626">
+          <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
+          <folding>
+            <element signature="e#1752#1802#0" expanded="true" />
+            <element signature="e#2228#2260#0" expanded="true" />
+            <element signature="e#2304#2338#0" expanded="true" />
+            <element signature="e#2398#2435#0" expanded="true" />
+            <element signature="e#2612#2644#0" expanded="true" />
+            <element signature="e#3163#3185#0" expanded="true" />
+            <element signature="e#4089#4139#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/utils/DateUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.390484">
+          <caret line="28" column="61" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#977#1060#0" expanded="true" />
+            <element signature="e#1062#1143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/serie.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24224643">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/episodes_activity_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1567477">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="e#229#249#0" expanded="true" />
+            <element signature="e#393#415#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3694,9 +3635,8 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/TraxerProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="364" column="0" selection-start-line="364" selection-start-column="0" selection-end-line="364" selection-end-column="0" />
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="method#getEpisodesBySerieIDAndSeason#0;class#TraxerProvider#0" expanded="false" />
             <element signature="method#countEpisode#0;class#TraxerProvider#0" expanded="false" />
             <element signature="method#countEpisodeBySerie#0;class#TraxerProvider#0" expanded="false" />
             <element signature="method#countEpisodeBySerieAndSeason#0;class#TraxerProvider#0" expanded="false" />
@@ -3713,40 +3653,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/fragments/NextWatchDetailFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/DBOperation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="127" selection-start-line="43" selection-start-column="127" selection-end-line="43" selection-end-column="127" />
+        <state vertical-scroll-proportion="0.40032813">
+          <caret line="406" column="124" selection-start-line="406" selection-start-column="124" selection-end-line="406" selection-end-column="124" />
           <folding>
-            <element signature="e#942#974#0" expanded="true" />
+            <element signature="method#insertEpisodes#0;class#DBOperation#0" expanded="false" />
+            <element signature="method#insertActors#0;class#DBOperation#0" expanded="false" />
+            <element signature="method#insertBanners#0;class#DBOperation#0" expanded="false" />
+            <element signature="method#getSerieViewModel#0;class#DBOperation#0" expanded="false" />
+            <element signature="method#existSerieWithId#0;class#DBOperation#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/utils/WikipediaApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/database/contract/EpisodeContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3638444">
-          <caret line="39" column="94" selection-start-line="39" selection-start-column="94" selection-end-line="39" selection-end-column="94" />
+        <state vertical-scroll-proportion="0.414274">
+          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/EpisodesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66132724">
+          <caret line="132" column="79" selection-start-line="132" selection-start-column="79" selection-end-line="132" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/DetailSerieActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37653816">
+          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
           <folding>
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#629#630#0" expanded="true" />
+            <element signature="e#1356#1388#0" expanded="true" />
+            <element signature="e#2820#2842#0" expanded="true" />
+            <element signature="e#2970#2997#0" expanded="true" />
+            <element signature="e#3199#3221#0" expanded="true" />
+            <element signature="e#3350#3379#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thetvdb/src/main/java/smasini/it/thetvdb/task/TaskActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/smasini/it/traxer/app/activities/ActorDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64187646">
-          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>

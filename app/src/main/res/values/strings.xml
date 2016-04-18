@@ -10,8 +10,10 @@
     <string name="episode_id_key" translatable="false">intent_id_episode_key</string>
     <string name="language_key" translatable="false">prefes_language_key</string>
     <string name="prefs_episode_style_key" translatable="false">prefes_episode_key</string>
+    <string name="prefs_date_format_key" translatable="false">prefes_date_format_key</string>
     <string name="prefs_special_episode_key" translatable="false">prefes_special_episode_key</string>
     <string name="prefs_notification_key" translatable="false">prefes_notification_key</string>
+    <string name="main_activity_notificaiton_key" translatable="false">main_activity_from_notification</string>
 
 
     <string name="app_name">Traxer</string>
@@ -32,8 +34,6 @@
     <string name="share_title">Share</string>
     <string name="app_description">Track your tv shows</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!-- Search show -->
     <string name="search_hint">Digit Tv Show</string>
     <string name="search_activity_title">Search Serie</string>
@@ -48,6 +48,8 @@
     <string name="days_label">Days</string>
     <string name="minutes_label">Minutes</string>
     <string name="total_episode_label">Total episodes</string>
+    <string name="statistics_episode_unwatched">Episodes unwatched: %d</string>
+    <string name="statistics_episode_watched">Episodes watched: %d</string>
 
     <!-- Collection -->
     <string name="colelction_serie_empty">No serie</string>
@@ -77,7 +79,6 @@
     <string name="snap_episode_watch">Episode setted as watch</string>
     <string name="snap_episode_unwatch">Episode set as unwatch</string>
 
-
     <!-- Settings -->
     <string name="general_category">General</string>
     <string name="default_language">en</string>
@@ -93,9 +94,19 @@
     <string name="pref_notification_off">Notification disabled</string>
     <string name="sync_account_type">traxer.smasini.it</string>
     <string name="content_authority">smasini.it.traxer</string>
+    <string name="default_date_format">yyyy-MM-dd</string>
+    <string name="date_format_title">Date format</string>
+    <string name="date_format_subtitle">Select the date format</string>
+
+    <string name="label_loading">Loading...</string>
+    <string name="special_season_name">Extra</string>
+    <string name="season_number_name">Season %d</string>
 
     <!-- Notification -->
     <string name="notification_title">Traxer - Episodes out!</string>
-    <string name="notification_message" formatted="false">Today came out %d episodes</string>
+    <string name="notification_message" formatted="false">Today were released %d episodes</string>
+    <string name="notification_message_single" formatted="false">Today an episode was released</string>
+
+
 
 </resources>

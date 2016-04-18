@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 
 /**
  * Project: Traxer
@@ -17,7 +18,15 @@ public class UIUtility {
 
     private static ProgressDialog progressDialog;
 
+    public static void showProgressDialog(Context context, int resStringMessage){
+        String message = Application.getStaticApplicationContext().getString(resStringMessage);
+        showProgressDialog(context, message);
+    }
+
     public static void showProgressDialog(Context context, String message){
+        if(progressDialog!=null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
         progressDialog = new ProgressDialog(context, R.style.MyDialog);
         progressDialog.setMessage(message);
         progressDialog.show();

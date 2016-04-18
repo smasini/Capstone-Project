@@ -26,6 +26,7 @@ import smasini.it.traxer.app.activities.EpisodeDetailActivity;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.database.contract.EpisodeContract;
 import smasini.it.traxer.enums.UriQueryType;
+import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.EpisodeItemViewModel;
 
 /**
@@ -87,6 +88,7 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        UIUtility.showProgressDialog(getActivity(), R.string.label_loading);
         String sortOrder;
         Uri uri;
         if(showNext){
@@ -108,6 +110,7 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         List<EpisodeItemViewModel> episodes = DBOperation.getEpisodes(data, false);
         adapter.swapData(episodes);
+        UIUtility.hideProgressDialog();
     }
 
     @Override
