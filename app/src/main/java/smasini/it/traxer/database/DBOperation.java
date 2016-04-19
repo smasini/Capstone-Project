@@ -359,6 +359,8 @@ public class DBOperation {
 
         Cursor cursor = Application.getStaticApplicationContext().getContentResolver().query(EpisodeContract.buildUri(UriQueryType.NEXT_EPISODE_TO_WATCH, new String[]{idSerie}), EpisodeContract.COLUMNS, null, null, null);
         if(cursor!=null && cursor.moveToFirst()){
+            edvm = new EpisodeDetailViewModel();
+            edvm.setEpisodeID(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_ID)));
             edvm.setFirstAired(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_FIRST_AIRED)));
             edvm.setName(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_NAME)));
             edvm.setOverview(cursor.getString(cursor.getColumnIndex(EpisodeContract.COL_OVERVIEW)));
@@ -373,7 +375,7 @@ public class DBOperation {
         return edvm;
     }
 
-    public static EpisodeDetailViewModel getDetailEpisodes(String episodeid){
+    public static EpisodeDetailViewModel getDetailEpisodes(String episodeid, String idSerie){
         EpisodeDetailViewModel edvm = new EpisodeDetailViewModel();
         Cursor cursor = Application.getStaticApplicationContext().getContentResolver().query(EpisodeContract.buildUri(UriQueryType.EPISODE_BY_ID, new String[]{episodeid}), EpisodeContract.COLUMNS, null, null, null);
         if(cursor!=null && cursor.moveToFirst()){
@@ -385,8 +387,11 @@ public class DBOperation {
             edvm.setSeasonNumber(cursor.getInt(cursor.getColumnIndex(EpisodeContract.COL_SEASON_NUMBER)));
             edvm.setRating(cursor.getDouble(cursor.getColumnIndex(EpisodeContract.COL_RATING)));
             edvm.setWatch(cursor.getInt(cursor.getColumnIndex(EpisodeContract.COL_WATCH)) == 1);
-
             cursor.close();
+        }
+        cursor = Application.getStaticApplicationContext().getContentResolver().query(SerieContract.buildUri(UriQueryType.SERIE_WITH_ID, new String[]{idSerie}), SerieContract.COLUMNS, null, null, null);
+        if(cursor!=null && cursor.moveToFirst()){
+            edvm.setSerieName(cursor.getString(cursor.getColumnIndex(SerieContract.COL_NAME)));
         }
         return edvm;
     }

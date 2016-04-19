@@ -1,5 +1,6 @@
 package smasini.it.traxer.app.activities;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +32,7 @@ import smasini.it.traxer.viewmodels.EpisodeDetailViewModel;
 public class EpisodeDetailActivity extends AppCompatActivity {
 
     private String episodeid;
+    private String shareText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,8 @@ public class EpisodeDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_episode_detail);
 
         episodeid = getIntent().getStringExtra(getString(R.string.episode_id_key));
-
-        EpisodeDetailViewModel edvm = DBOperation.getDetailEpisodes(episodeid);
+        String seriedid = getIntent().getStringExtra(getString(R.string.serie_id_key));
+        EpisodeDetailViewModel edvm = DBOperation.getDetailEpisodes(episodeid, seriedid);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,6 +88,8 @@ public class EpisodeDetailActivity extends AppCompatActivity {
             }
         });
 
+        shareText = String.format("%s %s\n%s", edvm.getSerieName(), Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()), edvm.getOverview());
+
         ((TextView)findViewById(R.id.textview_name_episode)).setText(edvm.getName());
         ((TextView)findViewById(R.id.textview_season_episode)).setText(Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()));
         ((TextView)findViewById(R.id.textview_first_aired)).setText(DateUtility.formatDate(edvm.getFirstAired()));
@@ -117,6 +122,7 @@ public class EpisodeDetailActivity extends AppCompatActivity {
         }
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingbar);
         ratingBar.setRating((float) edvm.getRating());
+        ratingBar.setContentDescription(String.format(getString(R.string.accessibility_rating), edvm.getRating()));
     }
 
     private void checkWatch(boolean isWatch){
@@ -128,6 +134,20 @@ public class EpisodeDetailActivity extends AppCompatActivity {
                 fab.setBackgroundTintList(ColorStateList.valueOf(Utility.getColor(R.color.grey_600)));
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+
+        menuItem.setIntent(shareIntent);
+        return true;
     }
 
     @Override

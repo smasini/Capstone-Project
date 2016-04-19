@@ -28,6 +28,7 @@ public class CastAdapter extends BaseAdapter<CastViewModel> {
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.actorImage);
+        myViewHolder.actorImage.setContentDescription(mContext.getString(R.string.accessibility_actor_photo));
     }
 
     @Override

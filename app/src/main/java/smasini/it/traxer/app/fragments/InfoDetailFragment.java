@@ -54,6 +54,7 @@ public class InfoDetailFragment extends Fragment {
 
         RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingbar);
         ratingBar.setRating((float)isvm.getRate());
+        ratingBar.setContentDescription(String.format(getString(R.string.accessibility_rating), isvm.getRate()));
         return rootView;
     }
 

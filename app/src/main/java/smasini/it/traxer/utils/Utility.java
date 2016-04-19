@@ -90,7 +90,7 @@ public class Utility {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return Application.getStaticApplicationContext().getColor(res);
         }else{
-            return Application.getStaticApplicationContext().getResources().getColor(R.color.green_500);
+            return Application.getStaticApplicationContext().getResources().getColor(res);
         }
     }
 

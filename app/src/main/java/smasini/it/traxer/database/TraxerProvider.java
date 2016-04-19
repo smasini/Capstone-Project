@@ -361,7 +361,7 @@ public class TraxerProvider extends ContentProvider {
     private Cursor getNextEpisodes(Uri uri, String[] projection){
         String id = uri.getPathSegments().get(2);
         String[] selectionArgs = new String[]{id};
-        String selection = EpisodeContract.sEpisodeIdSelection + " and " + EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_WATCH + " = 0 ";
+        String selection = EpisodeContract.sSerieIdSelection + " and " + EpisodeContract.TABLE_NAME + "." + EpisodeContract.COL_WATCH + " = 0 ";
         return sEpisodeQueryBuilder.query(db,
                 projection,
                 selection,

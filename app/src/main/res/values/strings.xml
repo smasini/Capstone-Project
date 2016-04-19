@@ -17,7 +17,7 @@
 
 
     <string name="app_name">Traxer</string>
-    <string name="title_activity_main">Traxer</string>
+    <string name="is_rtl">false</string>
 
     <!-- Navigation Drawer -->
     <string name="action_settings">Settings</string>
@@ -107,6 +107,15 @@
     <string name="notification_message" formatted="false">Today were released %d episodes</string>
     <string name="notification_message_single" formatted="false">Today an episode was released</string>
 
+    <string name="action_share">Share</string>
+    <string name="accessibility_add_serie">Add Serie</string>
+    <string name="accessibillity_watch_unwatch">Episode watch/unwatch</string>
+    <string name="accessibility_episode_photo">episode photo</string>
+    <string name="accessibility_actor_photo">actor photo</string>
+    <string name="accessibility_serie_photo">serie poster</string>
+    <string name="accessibility_season_photo">season poster</string>
+    <string name="accessibility_progress">Completed %d percent</string>
+    <string name="accessibility_rating">Rating: %.1f of 10</string>
 
 
 </resources>

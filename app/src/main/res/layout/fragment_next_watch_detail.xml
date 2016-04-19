@@ -6,90 +6,111 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_default"
     tools:context="smasini.it.traxer.app.fragments.NextWatchDetailFragment">
-
-    <android.support.v7.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:contentPadding="@dimen/padding_default"
-        app:cardBackgroundColor="@color/indigo_300"
-        app:cardElevation="4dp" >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:id="@+id/imageview_episode_photo"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/textview_name_episode" />
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/margin_default"
-        app:cardCornerRadius="4dp"
-        app:contentPadding="@dimen/padding_default"
-        app:cardBackgroundColor="@color/indigo_300"
-        app:cardElevation="4dp" >
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/scrollView" >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                android:id="@+id/image_container"
+                android:layout_marginTop="@dimen/padding_default"
+                app:cardBackgroundColor="@color/indigo_300"
+                app:cardElevation="4dp" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/accessibility_episode_photo"
+                        android:id="@+id/imageview_episode_photo"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_protection_serie"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:padding="4dp"
+                        android:id="@+id/textview_name_episode"
+                        android:layout_alignBottom="@+id/imageview_episode_photo" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_watch"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/textview_season_episode" />
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                app:elevation="6dp"
+                app:layout_anchor="@id/image_container"
+                app:layout_anchorGravity="bottom|end"
+                android:contentDescription="@string/accessibillity_watch_unwatch"
+                app:backgroundTint="@color/grey_600"
+                android:src="@drawable/ic_check_white_24dp" />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/textview_first_aired" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-
-        app:contentPadding="@dimen/padding_default"
-        app:cardBackgroundColor="@color/indigo_300"
-        app:cardElevation="4dp" >
-
-        <LinearLayout
+                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                app:cardCornerRadius="4dp"
+                app:contentPadding="@dimen/padding_default"
+                app:cardBackgroundColor="@color/indigo_300"
+                app:cardElevation="4dp" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/textview_season_episode" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Medium Text"
+                        android:id="@+id/textview_first_aired" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:contentPadding="@dimen/padding_default"
+            app:cardBackgroundColor="@color/indigo_300"
+            app:cardElevation="4dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/info_label_size"
-                android:shadowColor="@color/shadow_color"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="2"
-                android:text="@string/label_overview"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:id="@+id/episode_overview"/>
+                android:padding="8dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/info_label_size"
+                    android:shadowColor="@color/shadow_color"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="@string/label_overview"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:id="@+id/episode_overview"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-
+    </ScrollView>
 </LinearLayout>

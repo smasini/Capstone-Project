@@ -24,11 +24,11 @@ public class CollectionSerieAdapter extends BaseAdapter<SerieCollectionViewModel
     @Override
     public void onBindCustomViewHolder(ViewHolder viewHolder, int position, SerieCollectionViewModel viewModel) {
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-
         myViewHolder.serieName.setText(viewModel.getName());
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.serieImage);
+        myViewHolder.serieImage.setContentDescription(mContext.getString(R.string.accessibility_serie_photo));
     }
 
     @Override

@@ -5,7 +5,7 @@ package smasini.it.traxer.viewmodels;
  */
 public class EpisodeDetailViewModel {
 
-    private String name, urlImage, overview, firstAired;
+    private String name, urlImage, overview, firstAired, serieName, episodeID;
     private int number, seasonNumber;
     private double rating;
     private boolean watch;
@@ -72,5 +72,21 @@ public class EpisodeDetailViewModel {
 
     public void setWatch(boolean watch) {
         this.watch = watch;
+    }
+
+    public String getSerieName() {
+        return serieName;
+    }
+
+    public void setSerieName(String serieName) {
+        this.serieName = serieName;
+    }
+
+    public String getEpisodeID() {
+        return episodeID;
+    }
+
+    public void setEpisodeID(String episodeID) {
+        this.episodeID = episodeID;
     }
 }

@@ -35,6 +35,7 @@ public class EpisodesAdapter extends BaseAdapter<EpisodeItemViewModel> {
         }else{
             myViewHolder.episodeWatch.setBackgroundColor(Utility.getColor(R.color.grey_500));
         }
+        myViewHolder.episodeWatch.setContentDescription(mContext.getString(R.string.accessibillity_watch_unwatch));
         myViewHolder.episodeWatch.setTag(viewModel.isWatch());
         myViewHolder.episodeWatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,7 @@ public class EpisodesAdapter extends BaseAdapter<EpisodeItemViewModel> {
                 myViewHolder.episodeWatch.setTag(newWatch);
             }
         });
+        myViewHolder.episodeImage.setContentDescription(mContext.getString(R.string.accessibility_episode_photo));
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.episodeImage);

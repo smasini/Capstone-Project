@@ -31,4 +31,5 @@
     <color name="shadow_color">@color/grey_600</color>
     <color name="color_background_default">@color/grey_700</color>
     <color name="trasparent">#00000000</color>
+    <color name="black">#000000</color>
 </resources>

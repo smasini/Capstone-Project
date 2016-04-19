@@ -113,6 +113,7 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
                     EpisodeItemViewModel eivm = (EpisodeItemViewModel) model;
                     Intent intent = new Intent(EpisodesActivity.this, EpisodeDetailActivity.class);
                     intent.putExtra(getString(R.string.episode_id_key), eivm.getId());
+                    intent.putExtra(getString(R.string.serie_id_key), serieid);
                     startActivity(intent);
                 }
             });

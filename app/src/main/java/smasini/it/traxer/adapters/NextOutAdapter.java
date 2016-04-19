@@ -58,6 +58,8 @@ public class NextOutAdapter extends BaseAdapter<EpisodeItemViewModel>{
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.episodeImage);
+        myViewHolder.episodeImage.setContentDescription(mContext.getString(R.string.accessibility_episode_photo));
+        myViewHolder.episodeWatch.setContentDescription(mContext.getString(R.string.accessibillity_watch_unwatch));
     }
     @Override
     public ViewHolder getViewHolder(View view) {

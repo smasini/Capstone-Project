@@ -70,7 +70,8 @@ public class SearchSerieAdapter extends BaseAdapter<Serie>{
             myViewHolder.serieAdded.setVisibility(View.GONE);
             myViewHolder.addButton.setEnabled(true);
         }
-
+        myViewHolder.serieImage.setContentDescription(mContext.getString(R.string.accessibility_serie_photo));
+        myViewHolder.addButton.setContentDescription(mContext.getString(R.string.add_serie_btn));
     }
 
     @Override
