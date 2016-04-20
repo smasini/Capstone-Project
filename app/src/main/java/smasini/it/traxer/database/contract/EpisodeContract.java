@@ -37,7 +37,7 @@ public class EpisodeContract {
                                                     COL_FILENAME + " text, " +
                                                     COL_RATING + " float, " +
                                                     COL_RATE + " text, " +
-                                                    COL_WATCH + " integer, " +
+                                                    COL_WATCH + " integer default 0, " +
                                                     "foreign key (" + COL_SERIE_ID + ") references " + SerieContract.TABLE_NAME + "(" + SerieContract.COL_ID + ") on delete cascade" +
                                             ");";
 

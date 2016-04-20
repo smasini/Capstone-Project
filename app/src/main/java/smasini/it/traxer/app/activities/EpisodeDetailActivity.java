@@ -23,6 +23,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import smasini.it.traxer.R;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.utils.DateUtility;
@@ -34,16 +37,50 @@ public class EpisodeDetailActivity extends AppCompatActivity {
     private String episodeid;
     private String shareText = "";
 
+    @Bind(R.id.photo_action_bar)
+    ImageView photo;
+
+    @Bind(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.textview_name_episode)
+    TextView episodeName;
+
+    @Bind(R.id.textview_season_episode)
+    TextView episodeSeason;
+
+    @Bind(R.id.textview_first_aired)
+    TextView firstAired;
+
+    @Bind(R.id.episode_rating)
+    TextView episodeRate;
+
+    @Bind(R.id.episode_overview)
+    TextView overview;
+
+    @Bind(R.id.fab_watch)
+    FloatingActionButton fab;
+
+    @Bind(R.id.ratingbar)
+    RatingBar ratingBar;
+
+    @Bind(android.R.id.content)
+    View mainContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_detail);
 
+        ButterKnife.bind(this);
+
         episodeid = getIntent().getStringExtra(getString(R.string.episode_id_key));
         String seriedid = getIntent().getStringExtra(getString(R.string.serie_id_key));
         EpisodeDetailViewModel edvm = DBOperation.getDetailEpisodes(episodeid, seriedid);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -51,15 +88,9 @@ public class EpisodeDetailActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
+        collapsingToolbarLayout.setTitle(edvm.getName());
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        if(collapsingToolbarLayout!=null){
-            collapsingToolbarLayout.setTitle(edvm.getName());
-        }
-
-        ImageView photo = (ImageView) findViewById(R.id.photo_action_bar);
         Picasso.with(this).load(edvm.getUrlImage()).into(photo);
-
         Picasso.with(this).load(edvm.getUrlImage()).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -68,13 +99,10 @@ public class EpisodeDetailActivity extends AppCompatActivity {
                 int colordark = p.getDarkMutedColor(Color.WHITE);
                 int colorLightVibrant = p.getLightVibrantColor(Color.WHITE);
 
-                CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-                if(collapsingToolbarLayout!=null){
-                    collapsingToolbarLayout.setContentScrimColor(color);
-                    collapsingToolbarLayout.setStatusBarScrimColor(colordark);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(colorLightVibrant);
-                    collapsingToolbarLayout.setExpandedTitleColor(colorLightVibrant);
-                }
+                collapsingToolbarLayout.setContentScrimColor(color);
+                collapsingToolbarLayout.setStatusBarScrimColor(colordark);
+                collapsingToolbarLayout.setCollapsedTitleTextColor(colorLightVibrant);
+                collapsingToolbarLayout.setExpandedTitleColor(colorLightVibrant);
             }
 
             @Override
@@ -90,49 +118,39 @@ public class EpisodeDetailActivity extends AppCompatActivity {
 
         shareText = String.format("%s %s\n%s", edvm.getSerieName(), Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()), edvm.getOverview());
 
-        ((TextView)findViewById(R.id.textview_name_episode)).setText(edvm.getName());
-        ((TextView)findViewById(R.id.textview_season_episode)).setText(Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()));
-        ((TextView)findViewById(R.id.textview_first_aired)).setText(DateUtility.formatDate(edvm.getFirstAired()));
-        ((TextView)findViewById(R.id.episode_overview)).setText(edvm.getOverview());
-
-        ((TextView)findViewById(R.id.episode_rating)).setText(String.format("%.1f/10", edvm.getRating()));
-
+        episodeName.setText(edvm.getName());
+        episodeSeason.setText(Utility.formatEpisode(edvm.getNumber(), edvm.getSeasonNumber()));
+        firstAired.setText(DateUtility.formatDate(edvm.getFirstAired()));
+        overview.setText(edvm.getOverview());
+        episodeRate.setText(String.format("%.1f/10", edvm.getRating()));
         checkWatch(edvm.isWatch());
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_watch);
-        if(fab != null){
-            fab.setTag(edvm.isWatch());
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean newWatch;
-                    int stringres;
-                    if((boolean)v.getTag()){
-                        newWatch = false;
-                        stringres = R.string.snap_episode_unwatch;
-                    }else{
-                        newWatch = true;
-                        stringres = R.string.snap_episode_watch;
-                    }
-                    DBOperation.updateWatch(episodeid, newWatch);
-                    v.setTag(newWatch);
-                    checkWatch(newWatch);
-                    Snackbar.make(findViewById(android.R.id.content), stringres, Snackbar.LENGTH_LONG).show();
-                }
-            });
-        }
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingbar);
+        fab.setTag(edvm.isWatch());
         ratingBar.setRating((float) edvm.getRating());
         ratingBar.setContentDescription(String.format(getString(R.string.accessibility_rating), edvm.getRating()));
     }
 
+    @OnClick(R.id.fab_watch)
+    public void click(View view){
+        boolean newWatch;
+        int stringres;
+        if((boolean)view.getTag()){
+            newWatch = false;
+            stringres = R.string.snap_episode_unwatch;
+        }else{
+            newWatch = true;
+            stringres = R.string.snap_episode_watch;
+        }
+        DBOperation.updateWatch(episodeid, newWatch);
+        view.setTag(newWatch);
+        checkWatch(newWatch);
+        Snackbar.make(mainContainer, stringres, Snackbar.LENGTH_LONG).show();
+    }
+
     private void checkWatch(boolean isWatch){
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_watch);
-        if(fab!=null) {
-            if (isWatch) {
-                fab.setBackgroundTintList(ColorStateList.valueOf(Utility.getColor(R.color.green_500)));
-            } else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(Utility.getColor(R.color.grey_600)));
-            }
+        if (isWatch) {
+            fab.setBackgroundTintList(ColorStateList.valueOf(Utility.getColor(R.color.green_500)));
+        } else {
+            fab.setBackgroundTintList(ColorStateList.valueOf(Utility.getColor(R.color.grey_600)));
         }
     }
 

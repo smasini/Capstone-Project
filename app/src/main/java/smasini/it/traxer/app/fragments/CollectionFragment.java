@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -19,6 +18,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.CollectionSerieAdapter;
@@ -36,7 +38,12 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
 
     private final int COLLECTION_LOADER_ID = 1;
     private CollectionSerieAdapter adapter;
-    private RecyclerView recyclerView;
+
+    @Bind(R.id.recyclerview_collection_serie)
+    RecyclerView recyclerView;
+
+    @Bind(R.id.recyclerview_collection_empty)
+    View emptyView;
 
     public CollectionFragment() { }
 
@@ -46,10 +53,10 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_collection, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_collection_serie);
+        ButterKnife.bind(this, rootView);
+
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.collection_column), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
-        View emptyView = rootView.findViewById(R.id.recyclerview_collection_empty);
         adapter = new CollectionSerieAdapter(getActivity(), emptyView, new BaseAdapter.OnClickHandler() {
             @Override
             public void onClick(Object model) {
@@ -61,15 +68,12 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
         });
         recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab_add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SearchActivity.class));
-            }
-        });
-
         return rootView;
+    }
+
+    @OnClick(R.id.fab_add)
+    public void click(){
+        startActivity(new Intent(getActivity(), SearchActivity.class));
     }
 
     @Override
@@ -114,5 +118,11 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
         adapter.swapData(new ArrayList<SerieCollectionViewModel>());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

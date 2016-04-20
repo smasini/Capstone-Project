@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.utils.DateUtility;
@@ -60,21 +62,22 @@ public class EpisodesAdapter extends BaseAdapter<EpisodeItemViewModel> {
         return new MyViewHolder(view);
     }
 
-    private class MyViewHolder extends ViewHolder{
+    public class MyViewHolder extends ViewHolder{
 
-        public final TextView episodeName;
-        public final TextView episodeDate;
-        public final TextView episodeSeason;
-        public final ImageView episodeImage;
-        public final FrameLayout episodeWatch;
+        @Bind(R.id.textview_episode_name)
+        public TextView episodeName;
+        @Bind(R.id.textview_date_episode)
+        public TextView episodeDate;
+        @Bind(R.id.textview_season_info)
+        public TextView episodeSeason;
+        @Bind(R.id.imageview_episode)
+        public ImageView episodeImage;
+        @Bind(R.id.btn_watch)
+        public FrameLayout episodeWatch;
 
         public MyViewHolder(View view) {
             super(view);
-            episodeName = (TextView) view.findViewById(R.id.textview_episode_name);
-            episodeSeason = (TextView) view.findViewById(R.id.textview_season_info);
-            episodeDate = (TextView) view.findViewById(R.id.textview_date_episode);
-            episodeImage = (ImageView) view.findViewById(R.id.imageview_episode);
-            episodeWatch = (FrameLayout) view.findViewById(R.id.btn_watch);
+            ButterKnife.bind(this, view);
         }
     }
 }

@@ -14,6 +14,7 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.DetailFragmentPagerAdapter;
 import smasini.it.traxer.database.DBOperation;
@@ -32,16 +35,34 @@ public class DetailSerieActivity extends AppCompatActivity {
     private String serieID = "";
     private DetailSerieViewModel dsvm;
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.banner)
+    ImageView banner;
+
+    @Bind(R.id.viewpager)
+    ViewPager viewPager;
+
+    @Bind(R.id.sliding_tabs)
+    TabLayout tabLayout;
+
+    @Bind(R.id.appbar_layout)
+    AppBarLayout appBarLayout;
+
+    @Bind(android.R.id.content)
+    View rootView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_serie);
 
-        serieID = getIntent().getStringExtra(getString(R.string.serie_id_key));
+        ButterKnife.bind(this);
 
+        serieID = getIntent().getStringExtra(getString(R.string.serie_id_key));
         dsvm = DBOperation.getSerieDetails(serieID);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -50,17 +71,11 @@ public class DetailSerieActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
         }
-        ImageView banner = (ImageView) findViewById(R.id.banner);
         Picasso.with(this).load(dsvm.getBannerUrl()).into(banner);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        if(viewPager!=null)
-            viewPager.setAdapter(new DetailFragmentPagerAdapter(getSupportFragmentManager(), DetailSerieActivity.this, serieID));
+        viewPager.setAdapter(new DetailFragmentPagerAdapter(getSupportFragmentManager(), DetailSerieActivity.this, serieID));
 
-        // Give the TabLayout the ViewPager
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        if(tabLayout!=null)
-            tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
         changeColor();
     }
 
@@ -78,13 +93,13 @@ public class DetailSerieActivity extends AppCompatActivity {
             case R.id.action_all_watch:
                 UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieID, true);
-                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(rootView, R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
                 UIUtility.hideProgressDialog();
                 return true;
             case R.id.action_all_unwatch:
                 UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieID, false);
-                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(rootView, R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
                 UIUtility.hideProgressDialog();
                 return true;
             case R.id.action_delete:
@@ -109,9 +124,7 @@ public class DetailSerieActivity extends AppCompatActivity {
                 int colorAccent = p.getLightMutedColor(Color.WHITE);
                 int colorLightVibrant = p.getLightVibrantColor(Color.WHITE);
 
-                AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
-                if(appBarLayout!=null)
-                    appBarLayout.setBackgroundColor(color);
+                appBarLayout.setBackgroundColor(color);
 
                 Window window = getWindow();
                 // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -120,9 +133,7 @@ public class DetailSerieActivity extends AppCompatActivity {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 window.setStatusBarColor(colordark);
 
-                TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-                if(tabLayout!=null)
-                    tabLayout.setTabTextColors(colorAccent, colorLightVibrant);
+                tabLayout.setTabTextColors(colorAccent, colorLightVibrant);
             }
 
             @Override

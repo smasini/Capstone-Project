@@ -22,6 +22,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.viewmodels.StatisticViewModel;
@@ -31,26 +33,30 @@ import smasini.it.traxer.viewmodels.StatisticViewModel;
  */
 public class StatisticFragment extends Fragment {
 
-    private PieChart mChart;
+    @Bind(R.id.chart_watch)
+    PieChart mChart;
+
+    @Bind(R.id.total_series)
+    TextView totalSerie;
+    @Bind(R.id.total_episodes)
+    TextView totalEpisode;
+    @Bind(R.id.total_days)
+    TextView totalDay;
+    @Bind(R.id.total_hours)
+    TextView totalHour;
+    @Bind(R.id.total_minutes)
+    TextView totalMinute;
+
     private StatisticViewModel svm;
 
-    public StatisticFragment() {
-        // Required empty public constructor
-    }
+    public StatisticFragment() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_statistic, container, false);
-
+        ButterKnife.bind(this, rootView);
         svm = DBOperation.getStatistic();
-
-        TextView totalSerie = (TextView) rootView.findViewById(R.id.total_series);
-        TextView totalEpisode = (TextView) rootView.findViewById(R.id.total_episodes);
-        TextView totalDay = (TextView) rootView.findViewById(R.id.total_days);
-        TextView totalHour = (TextView) rootView.findViewById(R.id.total_hours);
-        TextView totalMinute = (TextView) rootView.findViewById(R.id.total_minutes);
 
         totalSerie.setText(String.format("%d", svm.getTotalSerie()));
         totalEpisode.setText(String.format("%d", svm.getTotalEpisode()));
@@ -58,7 +64,6 @@ public class StatisticFragment extends Fragment {
         totalHour.setText(svm.getHours());
         totalMinute.setText(svm.getMinutes());
 
-        mChart = (PieChart) rootView.findViewById(R.id.chart_watch);
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
         mChart.setExtraOffsets(5, 10, 5, 5);
@@ -147,5 +152,11 @@ public class StatisticFragment extends Fragment {
         mChart.setData(data);
         mChart.highlightValues(null);
         mChart.invalidate();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

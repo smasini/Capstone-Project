@@ -17,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.app.Application;
 import smasini.it.traxer.app.fragments.CollectionFragment;
@@ -29,11 +31,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private final int MY_PERMISSIONS_WRITE_EXTERNAL = 0;
 
+
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @Bind(R.id.nav_view)
+    NavigationView navigationView;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
         boolean isFromNotification = getIntent().getBooleanExtra(Application.getStaticApplicationContext().getString(R.string.main_activity_notificaiton_key), false);
@@ -43,13 +55,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             createAndInsertFragment("collection_fragment", R.string.collection_nav_label);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -61,11 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Fragment f =getSupportFragmentManager().findFragmentByTag("collection_fragment");
+            Fragment f = getSupportFragmentManager().findFragmentByTag("collection_fragment");
             if(f == null || !f.isAdded()){
                 createAndInsertFragment("collection_fragment", R.string.collection_nav_label);
             }else{
@@ -113,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         createAndInsertFragment(tag, titleRes);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -159,6 +166,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(actionBar!=null){
             actionBar.setTitle(string);
         }
-
     }
 }

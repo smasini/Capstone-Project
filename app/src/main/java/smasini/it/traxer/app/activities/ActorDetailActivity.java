@@ -16,22 +16,34 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.viewmodels.ActorDetailViewModel;
 
 public class ActorDetailActivity extends AppCompatActivity {
 
+    @Bind(R.id.photo_action_bar)
+    ImageView photo;
+
+    @Bind(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @Bind(R.id.webview_bio)
+    WebView webView;
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actor_detail);
-
+        ButterKnife.bind(this);
         String actorid = getIntent().getStringExtra(getString(R.string.actor_id_key));
-
         ActorDetailViewModel advm = DBOperation.getActorDetailViewModel(actorid);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -40,19 +52,16 @@ public class ActorDetailActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         if(collapsingToolbarLayout!=null){
             collapsingToolbarLayout.setTitle(advm.getName());
         }
 
-        WebView webView = (WebView) findViewById(R.id.webview_bio);
         if(webView!=null){
             String html = "<html><head><style type='text/css'>body{color:#FFFFFF;}</style></head><body>" + advm.getBioHTML() +"</body></html>";
             webView.setBackgroundColor(Color.TRANSPARENT);
-            webView.loadData(html, "text/html", "UTF-8");
+            webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
         }
 
-        ImageView photo = (ImageView) findViewById(R.id.photo_action_bar);
         Picasso.with(this).load(advm.getUrlImage()).into(photo);
 
         Picasso.with(this).load(advm.getUrlImage()).into(new Target() {
@@ -63,7 +72,6 @@ public class ActorDetailActivity extends AppCompatActivity {
                 int colordark = p.getDarkMutedColor(Color.WHITE);
                 int colorLightVibrant = p.getLightVibrantColor(Color.WHITE);
 
-                CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
                 if(collapsingToolbarLayout!=null){
                     collapsingToolbarLayout.setContentScrimColor(color);
                     collapsingToolbarLayout.setStatusBarScrimColor(colordark);

@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.SeasonAdapter;
@@ -37,7 +39,9 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     private final int SEASONS_LOADER_ID = 2;
     private SeasonAdapter adapter;
     private  String serieid;
-    private RecyclerView recyclerView;
+
+    @Bind(R.id.recyclerview_seasons)
+    RecyclerView recyclerView;
 
     public SeasonsFragment() { }
 
@@ -45,7 +49,7 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seasons, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_seasons);
+        ButterKnife.bind(this, rootView);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.season_column), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
 
@@ -107,5 +111,11 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
         super.onConfigurationChanged(newConfig);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.season_column), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

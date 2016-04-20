@@ -116,6 +116,7 @@
     <string name="accessibility_season_photo">season poster</string>
     <string name="accessibility_progress">Completed %d percent</string>
     <string name="accessibility_rating">Rating: %.1f of 10</string>
+    <string name="next_watch_empty">Nothing to watch</string>
 
 
 </resources>

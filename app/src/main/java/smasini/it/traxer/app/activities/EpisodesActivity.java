@@ -30,6 +30,8 @@ import com.squareup.picasso.Target;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.EpisodesAdapter;
@@ -45,19 +47,37 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
     private String serieid;
     private int seasonNumber;
     private EpisodesAdapter adapter;
-    private RecyclerView recyclerView;
     private final int EPISODE_LOADER_ID = 1;
+
+    @Bind(R.id.photo_action_bar)
+    ImageView photo;
+
+    @Bind(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.recyclerview_empty)
+    View emptyView;
+
+    @Bind(R.id.recyclerview_episodes)
+    RecyclerView recyclerView;
+
+    @Bind(android.R.id.content)
+    View mainContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodes_activity);
 
+        ButterKnife.bind(this);
+
         serieid = getIntent().getStringExtra(getString(R.string.serie_id_key));
         String urlSeasonImage = getIntent().getStringExtra(getString(R.string.url_season_key));
         seasonNumber = getIntent().getIntExtra(getString(R.string.season_number_key), -1);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -66,12 +86,9 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
             actionBar.setHomeButtonEnabled(true);
         }
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        if(collapsingToolbarLayout!=null){
-            collapsingToolbarLayout.setTitle(Utility.formatSeasonName(seasonNumber));
-        }
+        collapsingToolbarLayout.setTitle(Utility.formatSeasonName(seasonNumber));
 
-        ImageView photo = (ImageView) findViewById(R.id.photo_action_bar);
+
         Picasso.with(this).load(urlSeasonImage).into(photo);
 
         Picasso.with(this).load(urlSeasonImage).into(new Target() {
@@ -82,13 +99,11 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
                 int colordark = p.getDarkMutedColor(Color.WHITE);
                 int colorLightVibrant = p.getLightVibrantColor(Color.WHITE);
 
-                CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-                if(collapsingToolbarLayout!=null){
-                    collapsingToolbarLayout.setContentScrimColor(color);
-                    collapsingToolbarLayout.setStatusBarScrimColor(colordark);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(colorLightVibrant);
-                    collapsingToolbarLayout.setExpandedTitleColor(colorLightVibrant);
-                }
+                collapsingToolbarLayout.setContentScrimColor(color);
+                collapsingToolbarLayout.setStatusBarScrimColor(colordark);
+                collapsingToolbarLayout.setCollapsedTitleTextColor(colorLightVibrant);
+                collapsingToolbarLayout.setExpandedTitleColor(colorLightVibrant);
+
             }
 
             @Override
@@ -102,23 +117,20 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
             }
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_episodes);
-        View emptyView = findViewById(R.id.recyclerview_empty);
-        if(recyclerView!=null){
-            StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
-            recyclerView.setLayoutManager(sglm);
-            adapter = new EpisodesAdapter(this, emptyView, new BaseAdapter.OnClickHandler() {
-                @Override
-                public void onClick(Object model) {
-                    EpisodeItemViewModel eivm = (EpisodeItemViewModel) model;
-                    Intent intent = new Intent(EpisodesActivity.this, EpisodeDetailActivity.class);
-                    intent.putExtra(getString(R.string.episode_id_key), eivm.getId());
-                    intent.putExtra(getString(R.string.serie_id_key), serieid);
-                    startActivity(intent);
-                }
-            });
-            recyclerView.setAdapter(adapter);
-        }
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(sglm);
+        adapter = new EpisodesAdapter(this, emptyView, new BaseAdapter.OnClickHandler() {
+            @Override
+            public void onClick(Object model) {
+                EpisodeItemViewModel eivm = (EpisodeItemViewModel) model;
+                Intent intent = new Intent(EpisodesActivity.this, EpisodeDetailActivity.class);
+                intent.putExtra(getString(R.string.episode_id_key), eivm.getId());
+                intent.putExtra(getString(R.string.serie_id_key), serieid);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(adapter);
+
         getSupportLoaderManager().initLoader(EPISODE_LOADER_ID, null, this);
     }
 
@@ -142,14 +154,14 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
             case R.id.action_all_watch:
                 UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieid, seasonNumber, true);
-                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(mainContainer, R.string.snackbar_all_watch, Snackbar.LENGTH_LONG).show();
                 UIUtility.hideProgressDialog();
                 getSupportLoaderManager().restartLoader(EPISODE_LOADER_ID, null, this);
                 return true;
             case R.id.action_all_unwatch:
                 UIUtility.showProgressDialog(this, R.string.label_loading);
                 DBOperation.updateAllWatch(serieid, seasonNumber, false);
-                Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(mainContainer, R.string.snackbar_all_unwatch, Snackbar.LENGTH_LONG).show();
                 UIUtility.hideProgressDialog();
                 getSupportLoaderManager().restartLoader(EPISODE_LOADER_ID, null, this);
                 return true;

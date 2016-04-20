@@ -21,4 +21,6 @@
     <item name="episode_columns" type="integer">1</item>
 
     <dimen name="chart_height">400dp</dimen>
+
+    <item name="num_stars" type="integer">10</item>
 </resources>

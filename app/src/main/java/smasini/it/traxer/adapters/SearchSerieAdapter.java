@@ -10,6 +10,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.support.Actor;
 import smasini.it.thetvdb.support.Banner;
@@ -79,23 +81,24 @@ public class SearchSerieAdapter extends BaseAdapter<Serie>{
         return new MyViewHolder(view);
     }
 
-    private class MyViewHolder extends BaseAdapter.ViewHolder {
+    public class MyViewHolder extends BaseAdapter.ViewHolder {
 
+        @Bind(R.id.textview_serie_name)
         public TextView serieName;
+        @Bind(R.id.textview_serie_date)
         public TextView serieDate;
+        @Bind(R.id.textview_serie_network)
         public TextView serieNetwotk;
+        @Bind(R.id.textview_already_add)
         public TextView serieAdded;
+        @Bind(R.id.imageview_serie)
         public ImageView serieImage;
+        @Bind(R.id.button_add)
         public Button addButton;
 
         public MyViewHolder(View view) {
             super(view);
-            serieName = (TextView) view.findViewById(R.id.textview_serie_name);
-            serieDate = (TextView) view.findViewById(R.id.textview_serie_date);
-            serieNetwotk = (TextView) view.findViewById(R.id.textview_serie_network);
-            serieAdded = (TextView) view.findViewById(R.id.textview_already_add);
-            serieImage = (ImageView) view.findViewById(R.id.imageview_serie);
-            addButton = (Button) view.findViewById(R.id.button_add);
+            ButterKnife.bind(this, view);
         }
     }
 }

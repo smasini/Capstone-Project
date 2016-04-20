@@ -109,7 +109,7 @@ public class DBOperation {
             cv.put(EpisodeContract.COL_FILENAME, episode.getFilename());
             cv.put(EpisodeContract.COL_RATING, episode.getRating());
             cv.put(EpisodeContract.COL_RATE, episode.getRate());
-            cv.put(EpisodeContract.COL_WATCH, episode.isWatch() ? 1 : 0);
+            //cv.put(EpisodeContract.COL_WATCH, episode.isWatch() ? 1 : 0);
 
             cvs.add(cv);
         }

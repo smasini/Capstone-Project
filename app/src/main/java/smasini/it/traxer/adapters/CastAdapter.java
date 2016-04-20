@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.viewmodels.CastViewModel;
 
@@ -36,17 +38,18 @@ public class CastAdapter extends BaseAdapter<CastViewModel> {
         return new MyViewHolder(view);
     }
 
-    private class MyViewHolder extends ViewHolder{
+    public class MyViewHolder extends ViewHolder{
 
-        public final TextView actorName;
-        public final TextView actorRole;
-        public final ImageView actorImage;
+        @Bind(R.id.textview_actor_name)
+        public TextView actorName;
+        @Bind(R.id.textview_actor_role)
+        public TextView actorRole;
+        @Bind(R.id.imageview_actor)
+        public ImageView actorImage;
 
         public MyViewHolder(View view) {
             super(view);
-            actorRole = (TextView) view.findViewById(R.id.textview_actor_role);
-            actorName = (TextView) view.findViewById(R.id.textview_actor_name);
-            actorImage = (ImageView) view.findViewById(R.id.imageview_actor);
+            ButterKnife.bind(this, view);
         }
     }
 }

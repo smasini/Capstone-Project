@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.utils.Utility;
 import smasini.it.traxer.viewmodels.SeasonViewModel;
@@ -44,19 +46,20 @@ public class SeasonAdapter extends BaseAdapter<SeasonViewModel> {
         return new MyViewHolder(view);
     }
 
-    private class MyViewHolder extends ViewHolder{
+    public class MyViewHolder extends ViewHolder{
 
-        public final TextView seasonName;
-        public final ImageView seasonImage;
-        public final TextView seasonPercent;
-        public final ProgressBar progressBar;
+        @Bind(R.id.textview_season_name)
+        public TextView seasonName;
+        @Bind(R.id.imageview_season)
+        public ImageView seasonImage;
+        @Bind(R.id.textview_percent)
+        public TextView seasonPercent;
+        @Bind(R.id.progressbar)
+        public ProgressBar progressBar;
 
         public MyViewHolder(View view) {
             super(view);
-            seasonName = (TextView) view.findViewById(R.id.textview_season_name);
-            seasonPercent = (TextView) view.findViewById(R.id.textview_percent);
-            seasonImage = (ImageView) view.findViewById(R.id.imageview_season);
-            progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+            ButterKnife.bind(this, view);
         }
     }
 }

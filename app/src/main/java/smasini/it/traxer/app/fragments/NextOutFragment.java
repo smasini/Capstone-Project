@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.NextOutAdapter;
@@ -37,7 +39,11 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
     private final int EPISODES_LOADER_ID = 1;
     private NextOutAdapter adapter;
     private boolean showNext;
-    private RecyclerView recyclerView;
+
+    @Bind(R.id.recyclerview_episodes)
+    RecyclerView recyclerView;
+    @Bind(R.id.recyclerview_episodes_empty)
+    View emptyView;
 
     public NextOutFragment() { }
 
@@ -46,12 +52,11 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_fragmentext_out, container, false);
 
+        ButterKnife.bind(this, rootView);
         showNext = getArguments().getBoolean(getString(R.string.next_key), false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_episodes);
         StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.episode_columns), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(sglm);
-        View emptyView = rootView.findViewById(R.id.recyclerview_episodes_empty);
         adapter = new NextOutAdapter(getActivity(), emptyView, new BaseAdapter.OnClickHandler() {
             @Override
             public void onClick(Object model) {
@@ -65,6 +70,11 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
         recyclerView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @Override

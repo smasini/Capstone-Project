@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.viewmodels.SerieCollectionViewModel;
 
@@ -36,15 +38,16 @@ public class CollectionSerieAdapter extends BaseAdapter<SerieCollectionViewModel
         return new MyViewHolder(view);
     }
 
-    private class MyViewHolder extends ViewHolder{
+    public class MyViewHolder extends ViewHolder{
 
-        public final TextView serieName;
-        public final ImageView serieImage;
+        @Bind(R.id.textview_serie_name)
+        public TextView serieName;
+        @Bind(R.id.imageview_serie)
+        public ImageView serieImage;
 
         public MyViewHolder(View view) {
             super(view);
-            serieName = (TextView) view.findViewById(R.id.textview_serie_name);
-            serieImage = (ImageView) view.findViewById(R.id.imageview_serie);
+            ButterKnife.bind(this, view);
         }
     }
 }

@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import java.util.List;
+
+import butterknife.Bind;
 import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.support.Serie;
 import smasini.it.thetvdb.task.callbacks.CallbackSerie;
@@ -24,15 +26,20 @@ import smasini.it.traxer.utils.UIUtility;
 public class SearchActivity extends AppCompatActivity {
 
     private SearchSerieAdapter adapter;
+
+    @Bind(R.id.recyclerview_result_search)
+    RecyclerView recyclerView;
+
+    @Bind(R.id.recyclerview_search_empty)
+    View emptyView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         handleIntent(getIntent());
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_result_search);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        View emptyView = findViewById(R.id.recyclerview_search_empty);
         adapter = new SearchSerieAdapter(this, emptyView);
         recyclerView.setAdapter(adapter);
     }
@@ -61,7 +68,7 @@ public class SearchActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            UIUtility.showProgressDialog(this, "Loading...");
+            UIUtility.showProgressDialog(this, R.string.label_loading);
             TheTVDB.getInstance().findSeriesByName(query, new CallbackSerie() {
                 @Override
                 public void doAfterTask(List<Serie> series) {
