@@ -24,8 +24,8 @@ import smasini.it.traxer.database.DBOperation;
  */
 public class TraxerSyncAdapter extends AbstractThreadedSyncAdapter {
 
-    public static final int SYNC_INTERVAL = 60 * 180;
-    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
+    public static final int SYNC_INTERVAL = 60 * 60 * 24;
+    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/4;
     private ContentResolver mContentResolver;
     /**
      * Set up the sync adapter
@@ -63,8 +63,17 @@ public class TraxerSyncAdapter extends AbstractThreadedSyncAdapter {
         Bundle bundle = new Bundle();
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        ContentResolver.requestSync(getSyncAccount(context),
-                context.getString(R.string.content_authority), bundle);
+        ContentResolver.requestSync(getSyncAccount(context), context.getString(R.string.content_authority), bundle);
+    }
+
+    public static void stopSyncPeriodicaly(Context context){
+        Account account = new Account(context.getString(R.string.app_name), context.getString(R.string.sync_account_type));
+        String authority = context.getString(R.string.content_authority);
+        ContentResolver.cancelSync(account, authority);
+    }
+
+    public static void startSyncPeriodically(Context context){
+        ContentResolver.setSyncAutomatically(getSyncAccount(context), context.getString(R.string.content_authority), true);
     }
 
     public static Account getSyncAccount(Context context) {
@@ -79,14 +88,13 @@ public class TraxerSyncAdapter extends AbstractThreadedSyncAdapter {
             if (!accountManager.addAccountExplicitly(newAccount, "", null)) {
                 return null;
             }
-            onAccountCreated(newAccount, context);
+            String authority = context.getString(R.string.content_authority);
+            configurePeriodicSync(newAccount, authority, SYNC_INTERVAL, SYNC_FLEXTIME);
         }
         return newAccount;
     }
 
-    public static void configurePeriodicSync(Context context, int syncInterval, int flexTime) {
-        Account account = getSyncAccount(context);
-        String authority = context.getString(R.string.content_authority);
+    public static void configurePeriodicSync(Account account, String authority, int syncInterval, int flexTime) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // we can enable inexact timers in our periodic sync
             SyncRequest request = new SyncRequest.Builder().
@@ -98,11 +106,5 @@ public class TraxerSyncAdapter extends AbstractThreadedSyncAdapter {
             ContentResolver.addPeriodicSync(account,
                     authority, new Bundle(), syncInterval);
         }
-    }
-
-    private static void onAccountCreated(Account newAccount, Context context) {
-        TraxerSyncAdapter.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
-        ContentResolver.setSyncAutomatically(newAccount, context.getString(R.string.content_authority), true);//togliere??
-        syncImmediately(context);//togliere
     }
 }

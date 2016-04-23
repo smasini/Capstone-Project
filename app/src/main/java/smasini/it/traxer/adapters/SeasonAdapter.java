@@ -28,6 +28,7 @@ public class SeasonAdapter extends BaseAdapter<SeasonViewModel> {
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
 
         myViewHolder.seasonName.setText(Utility.formatSeasonName(viewModel.getNumber()));
+        myViewHolder.seasonName.setSelected(true);
         myViewHolder.progressBar.setMax(viewModel.getTotalEpisodes());
         myViewHolder.progressBar.setProgress(viewModel.getTotalEpisodeWatched());
         int perc = viewModel.getTotalEpisodeWatched() == 0 ? 0 : viewModel.getTotalEpisodeWatched() * 100 / viewModel.getTotalEpisodes();

@@ -34,6 +34,8 @@ public class NextOutAdapter extends BaseAdapter<EpisodeItemViewModel>{
         myViewHolder.episodeName.setText(viewModel.getSerieName());
         myViewHolder.episodeDate.setText(DateUtility.formatDate(viewModel.getDate()));
         myViewHolder.episodeSeason.setText(String.format("%s - %s", Utility.formatEpisode(viewModel.getNumber(), viewModel.getSeasonNumber()), viewModel.getName()));
+        myViewHolder.episodeSeason.setSelected(true);
+        myViewHolder.episodeName.setSelected(true);
         if(!showNext){
             if(viewModel.isWatch()){
                 myViewHolder.episodeWatch.setBackgroundColor(Utility.getColor(R.color.green_500));

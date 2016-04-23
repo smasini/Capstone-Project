@@ -30,6 +30,7 @@ public class EpisodesAdapter extends BaseAdapter<EpisodeItemViewModel> {
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
 
         myViewHolder.episodeName.setText(viewModel.getName());
+        myViewHolder.episodeName.setSelected(true);
         myViewHolder.episodeDate.setText(DateUtility.formatDate(viewModel.getDate()));
         myViewHolder.episodeSeason.setText(Utility.formatEpisode(viewModel.getNumber(), viewModel.getSeasonNumber()));
         if(viewModel.isWatch()){

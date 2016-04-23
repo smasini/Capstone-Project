@@ -384,7 +384,7 @@ public class TraxerProvider extends ContentProvider {
         Cursor retCursor;
         switch (sUriMatcher.match(uri)){
             case SERIE:
-                retCursor = getSerie(uri, projection, selection);
+                retCursor = getSerie(uri, projection, sortOrder);
                 break;
             case SERIE_WITH_ID:
                 retCursor = getSerieById(uri, projection, sortOrder);

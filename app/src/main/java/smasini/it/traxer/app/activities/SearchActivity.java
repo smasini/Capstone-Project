@@ -16,6 +16,7 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.support.Serie;
 import smasini.it.thetvdb.task.callbacks.CallbackSerie;
@@ -38,6 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        ButterKnife.bind(this);
         handleIntent(getIntent());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SearchSerieAdapter(this, emptyView);

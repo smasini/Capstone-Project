@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_WRITE_EXTERNAL);
         }
-
-       // TraxerSyncAdapter.syncImmediately(this);
     }
 
     @Override
@@ -81,9 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
-
-
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

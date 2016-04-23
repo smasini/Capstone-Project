@@ -27,6 +27,7 @@ public class CollectionSerieAdapter extends BaseAdapter<SerieCollectionViewModel
     public void onBindCustomViewHolder(ViewHolder viewHolder, int position, SerieCollectionViewModel viewModel) {
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         myViewHolder.serieName.setText(viewModel.getName());
+        myViewHolder.serieName.setSelected(true);
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.serieImage);
