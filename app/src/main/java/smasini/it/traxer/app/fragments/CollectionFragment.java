@@ -15,9 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ import butterknife.OnClick;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.BaseAdapter;
 import smasini.it.traxer.adapters.CollectionSerieAdapter;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.app.activities.DetailSerieActivity;
 import smasini.it.traxer.app.activities.SearchActivity;
 import smasini.it.traxer.database.DBOperation;
@@ -42,8 +42,7 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
 
     private final int COLLECTION_LOADER_ID = 1;
     private CollectionSerieAdapter adapter;
-
-
+    private Tracker mTracker;
 
     @Bind(R.id.recyclerview_collection_serie)
     RecyclerView recyclerView;
@@ -74,7 +73,8 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
         });
         recyclerView.setAdapter(adapter);
 
-
+        Application application = (Application) getActivity().getApplication();
+        mTracker = application.getDefaultTracker();
 
         return rootView;
     }
@@ -83,6 +83,10 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
 
     @OnClick(R.id.fab_add)
     public void click(){
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("AddSerie")
+                .build());
         startActivity(new Intent(getActivity(), SearchActivity.class));
     }
 

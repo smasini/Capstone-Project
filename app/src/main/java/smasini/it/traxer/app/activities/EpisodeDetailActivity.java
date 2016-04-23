@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -27,6 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.utils.DateUtility;
 import smasini.it.traxer.utils.Utility;
@@ -127,6 +130,13 @@ public class EpisodeDetailActivity extends AppCompatActivity {
         fab.setTag(edvm.isWatch());
         ratingBar.setRating((float) edvm.getRating());
         ratingBar.setContentDescription(String.format(getString(R.string.accessibility_rating), edvm.getRating()));
+
+        Application application = (Application) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("EpisodeOpen")
+                .setAction(episodeid)
+                .build());
     }
 
     @OnClick(R.id.fab_watch)

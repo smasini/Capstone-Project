@@ -13,12 +13,15 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.viewmodels.ActorDetailViewModel;
 
@@ -90,6 +93,13 @@ public class ActorDetailActivity extends AppCompatActivity {
 
             }
         });
+
+        Application application = (Application) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("ActorOpen")
+                .setAction(actorid)
+                .build());
     }
 
     @Override

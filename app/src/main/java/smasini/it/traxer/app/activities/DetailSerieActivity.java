@@ -19,6 +19,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -26,6 +28,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import smasini.it.traxer.R;
 import smasini.it.traxer.adapters.DetailFragmentPagerAdapter;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.database.DBOperation;
 import smasini.it.traxer.utils.UIUtility;
 import smasini.it.traxer.viewmodels.DetailSerieViewModel;
@@ -77,6 +80,13 @@ public class DetailSerieActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         changeColor();
+
+        Application application = (Application) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("SerieOpen")
+                .setAction(serieID)
+                .build());
     }
 
     @Override

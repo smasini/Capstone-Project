@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 import smasini.it.thetvdb.TheTVDB;
 import smasini.it.thetvdb.utils.DownloadManager;
 import smasini.it.traxer.R;
@@ -17,6 +20,7 @@ public class Application extends android.app.Application {
 
     private static Context applicationContext;
     public static String sdDirectory;
+    private Tracker mTracker;
 
     @Override
     public void onCreate() {
@@ -36,4 +40,13 @@ public class Application extends android.app.Application {
         return applicationContext;
     }
 
+
+    synchronized public Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker(R.xml.global_tracker);
+        }
+        return mTracker;
+    }
 }

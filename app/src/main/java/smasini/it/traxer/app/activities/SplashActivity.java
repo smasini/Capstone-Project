@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.sync.TraxerSyncAdapter;
 
 /**
@@ -16,6 +20,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         TraxerSyncAdapter.startSyncPeriodically(this);
+
+        Application application = (Application) getApplication();
+        Tracker tracker = application.getDefaultTracker();
+
+        tracker.setScreenName("SplashScreen");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

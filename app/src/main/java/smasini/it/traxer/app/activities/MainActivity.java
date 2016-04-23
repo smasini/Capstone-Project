@@ -20,6 +20,8 @@ import android.view.MenuItem;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
 
     private InterstitialAd mInterstitialAd;
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +76,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.banner_ad_unit_id));
         requestNewInterstitial();
+
+        Application application = (Application) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("DD608557C0D4662F401C0A3C06159DD0")//samsung 
+                .addTestDevice("DD608557C0D4662F401C0A3C06159DD0")//samsung
                 //.addTestDevice("EDCAA17E009043FB89BD9A0B2AA44B9A")//nexus 4
                 //.addTestDevice("47840A13FFA6BA2D719581AD68D2A9C8")//nexus 7
                 //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//emulator
@@ -132,6 +138,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tag = "settings_fragment";
             titleRes = R.string.settings_nav_label;
         } else if (id == R.id.nav_share) {
+            mTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory("Action")
+                    .setAction("Share")
+                    .build());
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
