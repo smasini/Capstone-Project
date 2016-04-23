@@ -51,6 +51,7 @@ public class TraxerProvider extends ContentProvider {
     static final int COUNT_SEASON_TOTAL_BY_SERIE = 121;
     static final int COUNT_EPISODE_OUT_TODAY = 122;
     static final int NEXT_EPISODE_TO_WATCH = 123;
+    static final int EPISODE_NEXT_OUT_TODAY = 124;
 
     private static final SQLiteQueryBuilder sTimeQueryBuilder, sSerieQueryBuilder, sEpisodeQueryBuilder, sSeasonQueryBuilder, sCastQueryBuilder, sBannerQueryBuilder;
 
@@ -93,6 +94,7 @@ public class TraxerProvider extends ContentProvider {
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/count/idserie/total/*", COUNT_EPISODE_TOTAL_BY_SERIE);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/time/watch", TIME_WATCH);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/nextout", EPISODE_NEXT_OUT);
+        matcher.addURI(authority, BaseContract.PATH_EPISODE + "/nextout/today", EPISODE_NEXT_OUT_TODAY);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/miss", EPISODE_MISS);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/seasons/*", EPISODE_SEASONS);
         matcher.addURI(authority, BaseContract.PATH_EPISODE + "/serieid/*", EPISODE_WITH_SERIEID);
@@ -297,6 +299,20 @@ public class TraxerProvider extends ContentProvider {
         return c;
     }
 
+    private Cursor getEpisodesToday(String[] projection, String sortOrder){
+        String selection= EpisodeContract.sNextTodaySelection;
+        Cursor c = sTimeQueryBuilder.query(db,
+                projection,
+                selection,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+
+        return c;
+    }
+
     private Cursor getEpisodesCountToday(){
         String selection = EpisodeContract.sTodaySelection;
         Cursor c = sEpisodeQueryBuilder.query(db,
@@ -448,6 +464,9 @@ public class TraxerProvider extends ContentProvider {
                 break;
             case NEXT_EPISODE_TO_WATCH:
                 retCursor = getNextEpisodes(uri, projection);
+                break;
+            case EPISODE_NEXT_OUT_TODAY:
+                retCursor = getEpisodesToday(projection, sortOrder);
                 break;
             default:
                 retCursor = null;

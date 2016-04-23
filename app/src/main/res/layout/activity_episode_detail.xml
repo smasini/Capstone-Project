@@ -86,6 +86,7 @@
                     </LinearLayout>
                     <HorizontalScrollView
                         android:layout_width="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content">
                         <FrameLayout
                             android:layout_width="wrap_content"

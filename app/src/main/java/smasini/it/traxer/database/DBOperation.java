@@ -454,4 +454,9 @@ public class DBOperation {
     public static int getCountEpisodeToday(){
         return getCount(EpisodeContract.buildUri(UriQueryType.COUNT_ALL_TODAY));
     }
+
+    public static List<EpisodeItemViewModel> getComingOutToday(){
+        Cursor cursor = Application.getStaticApplicationContext().getContentResolver().query(EpisodeContract.buildUri(UriQueryType.EPISODE_NEXT_OUT_TODAY), EpisodeContract.COLUMNS_WHIT_SERIE, null, null, null);
+        return getEpisodes(cursor, false);
+    }
 }

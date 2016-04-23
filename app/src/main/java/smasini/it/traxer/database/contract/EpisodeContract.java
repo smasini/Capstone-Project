@@ -153,6 +153,9 @@ public class EpisodeContract {
             case EPISODE_NEXT_OUT:
                 builder.appendPath("nextout");
                 break;
+            case EPISODE_NEXT_OUT_TODAY:
+                builder.appendPath("nextout").appendPath("today");
+                break;
             case SEASONS_BY_SERIE:
                 builder.appendPath("seasons").appendPath(params[0]);
                 break;
@@ -181,6 +184,8 @@ public class EpisodeContract {
     public static final String sEpisodeIdSelection = TABLE_NAME + "." + COL_ID + " = ? ";
 
     public static final String sNextSelection = TABLE_NAME + "." + COL_FIRST_AIRED + " > date('now') ";
+
+    public static final String sNextTodaySelection = TABLE_NAME + "." + COL_FIRST_AIRED + " = date('now') ";
 
     public static final String sTodaySelection = TABLE_NAME + "." + COL_FIRST_AIRED + " = date('now') ";
 

@@ -19,8 +19,13 @@
     <item name="season_column" type="integer">3</item>
     <item name="cast_columns" type="integer">1</item>
     <item name="episode_columns" type="integer">1</item>
+    <item name="search_columns" type="integer">1</item>
 
     <dimen name="chart_height">400dp</dimen>
+    <dimen name="widget_default_height">180dp</dimen>
+    <dimen name="widget_default_width">250dp</dimen>
+    <dimen name="widget_min_resize_width">220dp</dimen>
+    <dimen name="widget_min_resize_height">180dp</dimen>
 
     <item name="num_stars" type="integer">10</item>
 </resources>

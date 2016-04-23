@@ -50,7 +50,7 @@ public class NextOutFragment extends Fragment implements LoaderManager.LoaderCal
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_fragmentext_out, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_next_out, container, false);
 
         ButterKnife.bind(this, rootView);
         showNext = getArguments().getBoolean(getString(R.string.next_key), false);

@@ -74,6 +74,7 @@
             <FrameLayout
                 android:layout_width="35dp"
                 android:layout_height="120dp"
+                android:visibility="gone"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/btn_watch"
                 android:background="@color/grey_500">

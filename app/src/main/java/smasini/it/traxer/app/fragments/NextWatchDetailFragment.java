@@ -1,6 +1,7 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -82,6 +83,16 @@ public class NextWatchDetailFragment extends Fragment {
             emptyView.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .detach(this)
+                .attach(this)
+                .commit();
     }
 
     @Override public void onDestroyView() {

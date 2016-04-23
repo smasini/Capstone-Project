@@ -1,6 +1,7 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -124,9 +125,17 @@ public class StatisticFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .detach(this)
+                .attach(this)
+                .commit();
+    }
+
     private void setData() {
-
-
         ArrayList<Entry> yVals1 = new ArrayList<>();
 
         yVals1.add(new Entry(svm.getUnwatch(), 0));
