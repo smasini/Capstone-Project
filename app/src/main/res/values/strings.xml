@@ -1,7 +1,6 @@
 <resources>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="the_tvdb_api_key" translatable="false">D15565209DA1AB62</string>
     <string name="serie_id_key" translatable="false">intent_serie_id_key</string>
     <string name="actor_id_key" translatable="false">intent_actor_id_key</string>
     <string name="next_key" translatable="false">show_next_bundle_key</string>
@@ -14,7 +13,6 @@
     <string name="prefs_special_episode_key" translatable="false">prefes_special_episode_key</string>
     <string name="prefs_notification_key" translatable="false">prefes_notification_key</string>
     <string name="main_activity_notificaiton_key" translatable="false">main_activity_from_notification</string>
-
 
     <string name="app_name">Traxer</string>
     <string name="is_rtl">false</string>
@@ -117,6 +115,11 @@
     <string name="accessibility_progress">Completed %d percent</string>
     <string name="accessibility_rating">Rating: %.1f of 10</string>
     <string name="next_watch_empty">Nothing to watch</string>
+
+    <!-- Widget -->
+    <string name="widget_name">Traxer</string>
+    <string name="no_episode_today">No episode today</string>
+    <string name="widget_title">Traxer: today coming out</string>
 
 
 </resources>

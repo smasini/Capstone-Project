@@ -90,7 +90,7 @@
         <receiver
             android:name=".widget.TraxerAppWidgetProvider"
             android:enabled="true"
-            android:label="@string/title_widget" >
+            android:label="@string/widget_name" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="app.nanodegree.masini.simone.sunshine.ACTION_DATA_UPDATED" />
