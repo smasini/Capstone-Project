@@ -94,9 +94,9 @@ public class TheTVDB {
 
     private void downloadZip(String serieID, String rootPathDirectory, CallbackZip callbackZip){
         String zipPath = String.format("%s/api/%s/series/%s/all/%s.zip", mirrorPath, apiKey, serieID, language);
-        String destPath = String.format("%s/images", rootPathDirectory);
-        DownloadManager.makeDirectory(destPath);
-        destPath = String.format("%s/images/%s/", rootPathDirectory, serieID);
+        //String destPath = String.format("%s/images", rootPathDirectory);
+        //DownloadManager.makeDirectory(destPath);
+        String destPath = String.format("%s/%s/", rootPathDirectory, serieID);
         DownloadManager.makeDirectory(destPath);
 
         TaskDownloadZip taskDownloadZip = new TaskDownloadZip(zipPath, destPath);
@@ -104,7 +104,7 @@ public class TheTVDB {
         taskDownloadZip.execute();
     }
 
-    public void getSerieData(String serieID, String rootPathDirectory, final CallbackSerieData callback){
+    public void getSerieData(String serieID, final String rootPathDirectory, final CallbackSerieData callback){
         downloadZip(serieID, rootPathDirectory, new CallbackZip() {
             @Override
             public void doAfterTask(final String destinatioPath) {
@@ -120,9 +120,7 @@ public class TheTVDB {
                                     TaskBanner taskBanner = new TaskBanner(destinatioPath, new CallbackBanner() {
                                         @Override
                                         public void doAfterTask(List<Banner> banners) {
-                                            DownloadManager.delete(destinatioPath + language + ".xml");
-                                            DownloadManager.delete(destinatioPath + "banners.xml");
-                                            DownloadManager.delete(destinatioPath + "actors.xml");
+                                            DownloadManager.delete(String.format("%s/%s", rootPathDirectory, serie.getId()));
                                             saveServerTime();
                                             callback.onSerieDataLoad(serie, actors, banners);
                                         }

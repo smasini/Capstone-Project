@@ -26,12 +26,8 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         applicationContext = this.getApplicationContext();
-        sdDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Traxer";
-        boolean ok = DownloadManager.makeDirectory(sdDirectory);
-        //add .nomedia file
-        if(ok){
-            DownloadManager.nomedia(sdDirectory);
-        }
+        sdDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + applicationContext.getString(R.string.app_name);
+        DownloadManager.makeDirectory(sdDirectory);
         String language = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(getString(R.string.language_key), getString(R.string.default_language));
         TheTVDB.init(applicationContext, applicationContext.getString(R.string.the_tvdb_api_key), language);
     }

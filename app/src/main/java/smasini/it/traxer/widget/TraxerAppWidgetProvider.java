@@ -11,12 +11,15 @@ import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
 
 import smasini.it.traxer.R;
+import smasini.it.traxer.app.Application;
 import smasini.it.traxer.app.activities.MainActivity;
 
 /**
  * Created by Simone Masini on 23/04/2016.
  */
 public class TraxerAppWidgetProvider extends AppWidgetProvider {
+
+    public static final String ACTION_DATA_UPDATED = "smasini.it.traxer.ACTION_DATA_UPDATED";
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // Perform this loop procedure for each App Widget that belongs to this provider
@@ -37,6 +40,10 @@ public class TraxerAppWidgetProvider extends AppWidgetProvider {
             views.setPendingIntentTemplate(R.id.widget_list, clickPendingIntentTemplate);
             views.setEmptyView(R.id.widget_list, R.id.widget_empty);
 
+            Intent dataUpdatedIntent = new Intent(TraxerAppWidgetProvider.ACTION_DATA_UPDATED).setPackage(Application.getStaticApplicationContext().getPackageName());
+            PendingIntent pi = PendingIntent.getBroadcast(Application.getStaticApplicationContext(), appWidgetId, dataUpdatedIntent, PendingIntent.FLAG_ONE_SHOT);
+            views.setOnClickPendingIntent(R.id.btn_sync, pi);
+
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
@@ -45,17 +52,15 @@ public class TraxerAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
-       // if (SunshineSyncAdapter.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+        if (ACTION_DATA_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
-        //}
+        }
     }
 
     private void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
-        views.setRemoteAdapter(R.id.widget_list,
-                new Intent(context, WidgetRemoteViewsService.class));
+        views.setRemoteAdapter(R.id.widget_list, new Intent(context, WidgetRemoteViewsService.class));
     }
-
 
 }

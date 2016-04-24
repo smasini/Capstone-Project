@@ -56,7 +56,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                 if(item==null){
                     return null;
                 }
-                RemoteViews views = new RemoteViews(getPackageName(), R.layout.episode_item);
+                RemoteViews views = new RemoteViews(getPackageName(), R.layout.widget_item);
                 try {
                     Bitmap bmp = Picasso.with(WidgetRemoteViewsService.this).load(item.getImageUrl()).get();
                     views.setImageViewBitmap(R.id.imageview_episode, bmp);
@@ -72,7 +72,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
             @Override
             public RemoteViews getLoadingView() {
-                return new RemoteViews(getPackageName(), R.layout.episode_item);
+                return new RemoteViews(getPackageName(), R.layout.widget_item);
             }
 
             @Override
@@ -82,9 +82,11 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
             @Override
             public long getItemId(int position) {
-                EpisodeItemViewModel eivm = episodes.get(position);
-                if(eivm!=null){
-                    return Long.parseLong(eivm.getId());
+                if(episodes.size()>0) {
+                    EpisodeItemViewModel eivm = episodes.get(position);
+                    if (eivm != null) {
+                        return Long.parseLong(eivm.getId());
+                    }
                 }
                 return -1;
             }

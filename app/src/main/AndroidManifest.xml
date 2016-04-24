@@ -40,6 +40,7 @@
 
         <provider
             android:name=".database.TraxerProvider"
+            android:exported="true"
             android:authorities="smasini.it.traxer" />
         <activity
             android:name=".app.activities.DetailSerieActivity"
@@ -93,7 +94,7 @@
             android:label="@string/widget_name" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="app.nanodegree.masini.simone.sunshine.ACTION_DATA_UPDATED" />
+                <action android:name="smasini.it.traxer.ACTION_DATA_UPDATED" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
