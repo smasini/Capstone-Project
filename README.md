@@ -10,7 +10,7 @@ In the strings file, change these two values:
 
 To run google analytics, add the services.json file in `/app/` folder
 
-For `the_tvdb_api_key` go to: http://www.thetvdb.com/ and create a new account.
+For `the_tvdb_api_key` go to: http://www.thetvdb.com/?tab=login and create a new account.
 
 Then from the page: http://www.thetvdb.com/?tab=userinfo you can create a new api key
   
