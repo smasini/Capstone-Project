@@ -17,6 +17,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("../keystore.jks")
+            storePassword "nanodegree!2016"
+            keyAlias "traxer"
+            keyPassword "nanodegree!2016"
+        }
+    }
+
+    buildTypes {
+        release{
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 dependencies {
