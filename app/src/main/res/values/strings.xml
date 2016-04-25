@@ -120,6 +120,7 @@
     <string name="widget_name">Traxer</string>
     <string name="no_episode_today">No episode today</string>
     <string name="widget_title">Traxer: today coming out</string>
+    <string name="appbar_transition">appbar_transition</string>
 
 
 </resources>

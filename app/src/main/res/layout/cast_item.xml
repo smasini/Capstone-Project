@@ -23,6 +23,7 @@
                 android:id="@+id/imageview_actor"
                 android:layout_width="80dp"
                 android:scaleType="fitStart"
+                android:transitionName="@string/appbar_transition"
                 android:layout_height="120dp"
                 android:src="@drawable/actor_sample"
                 android:layout_alignParentStart="true" />

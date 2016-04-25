@@ -1,11 +1,14 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -68,7 +71,10 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
                 SerieCollectionViewModel viewModel = (SerieCollectionViewModel) model;
                 Intent intent = new Intent(getActivity(), DetailSerieActivity.class);
                 intent.putExtra(getString(R.string.serie_id_key), viewModel.getId());
-                startActivity(intent);
+
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
+                ActivityCompat.startActivity(getActivity(), intent, bundle);
+
             }
         });
         recyclerView.setAdapter(adapter);
@@ -87,7 +93,8 @@ public class CollectionFragment extends Fragment implements LoaderManager.Loader
                 .setCategory("Action")
                 .setAction("AddSerie")
                 .build());
-        startActivity(new Intent(getActivity(), SearchActivity.class));
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()).toBundle();
+        ActivityCompat.startActivity(getActivity(), new Intent(getActivity(), SearchActivity.class), bundle);
     }
 
     @Override

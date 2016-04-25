@@ -40,6 +40,7 @@ public class SeasonAdapter extends BaseAdapter<SeasonViewModel> {
         }
         myViewHolder.seasonImage.setContentDescription(mContext.getString(R.string.accessibility_season_photo));
         myViewHolder.progressBar.setContentDescription(String.format(mContext.getString(R.string.accessibility_progress), perc));
+        viewModel.setSharedImageView(myViewHolder.seasonImage);
     }
 
     @Override

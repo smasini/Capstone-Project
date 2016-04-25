@@ -57,6 +57,7 @@ public class EpisodesAdapter extends BaseAdapter<EpisodeItemViewModel> {
         Picasso.with(mContext)
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.episodeImage);
+        viewModel.setSharedImageView(myViewHolder.episodeImage);
     }
     @Override
     public ViewHolder getViewHolder(View view) {

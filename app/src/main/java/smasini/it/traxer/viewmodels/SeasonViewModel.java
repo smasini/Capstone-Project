@@ -1,11 +1,14 @@
 package smasini.it.traxer.viewmodels;
 
+import android.widget.ImageView;
+
 /**
  * Created by Simone Masini on 03/04/2016.
  */
 public class SeasonViewModel {
     private String imageUrl;
     private int number, totalEpisodes, totalEpisodeWatched;
+    private ImageView sharedImageView;
 
     public String getImageUrl() {
         return imageUrl;
@@ -37,5 +40,13 @@ public class SeasonViewModel {
 
     public void setTotalEpisodeWatched(int totalEpisodeWatched) {
         this.totalEpisodeWatched = totalEpisodeWatched;
+    }
+
+    public ImageView getSharedImageView() {
+        return sharedImageView;
+    }
+
+    public void setSharedImageView(ImageView sharedImageView) {
+        this.sharedImageView = sharedImageView;
     }
 }

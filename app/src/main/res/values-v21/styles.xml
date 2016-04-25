@@ -9,6 +9,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material.v21</item>
         <item name="dialogTheme">@style/DialogStyle</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
+        <item name="android:windowContentTransitions">true</item>
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
@@ -26,5 +27,9 @@
         <item name="android:windowBackground">@color/color_background_default</item>
         <item name="android:colorBackground">@color/color_background_default</item>
         <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="AppTheme.Main">
+        <item name="android:windowExitTransition">@transition/main_exit</item>
     </style>
 </resources>

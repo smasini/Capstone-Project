@@ -1,11 +1,13 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -63,7 +65,8 @@ public class CastFragment extends Fragment implements LoaderManager.LoaderCallba
                 CastViewModel viewModel = (CastViewModel) model;
                 Intent intent = new Intent(getActivity(), ActorDetailActivity.class);
                 intent.putExtra(getString(R.string.actor_id_key), viewModel.getId());
-                startActivity(intent);
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity(), viewModel.getSharedImageView(), viewModel.getSharedImageView().getTransitionName()).toBundle();
+                ActivityCompat.startActivity(getActivity(), intent, bundle);
             }
         });
         recyclerView.setAdapter(adapter);

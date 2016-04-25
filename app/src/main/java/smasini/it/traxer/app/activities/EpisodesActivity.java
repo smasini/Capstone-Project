@@ -1,5 +1,6 @@
 package smasini.it.traxer.app.activities;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -126,7 +128,8 @@ public class EpisodesActivity extends AppCompatActivity implements LoaderManager
                 Intent intent = new Intent(EpisodesActivity.this, EpisodeDetailActivity.class);
                 intent.putExtra(getString(R.string.episode_id_key), eivm.getId());
                 intent.putExtra(getString(R.string.serie_id_key), serieid);
-                startActivity(intent);
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(EpisodesActivity.this, eivm.getSharedImageView(), eivm.getSharedImageView().getTransitionName()).toBundle();
+                ActivityCompat.startActivity(EpisodesActivity.this, intent, bundle);
             }
         });
         recyclerView.setAdapter(adapter);

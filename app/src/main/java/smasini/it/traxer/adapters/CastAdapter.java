@@ -31,6 +31,7 @@ public class CastAdapter extends BaseAdapter<CastViewModel> {
                 .load(viewModel.getImageUrl())
                 .into(myViewHolder.actorImage);
         myViewHolder.actorImage.setContentDescription(mContext.getString(R.string.accessibility_actor_photo));
+        viewModel.setSharedImageView(((MyViewHolder) viewHolder).actorImage);
     }
 
     @Override

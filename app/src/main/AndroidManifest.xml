@@ -22,6 +22,7 @@
             android:value="@integer/google_play_services_version" />
         <activity
             android:name=".app.activities.MainActivity"
+            android:theme="@style/AppTheme.Main"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity

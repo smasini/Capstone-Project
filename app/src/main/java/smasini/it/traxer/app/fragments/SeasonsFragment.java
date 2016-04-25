@@ -1,11 +1,13 @@
 package smasini.it.traxer.app.fragments;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -61,7 +63,8 @@ public class SeasonsFragment extends Fragment implements LoaderManager.LoaderCal
                 intent.putExtra(getString(R.string.serie_id_key), serieid);
                 intent.putExtra(getString(R.string.url_season_key), viewModel.getImageUrl());
                 intent.putExtra(getString(R.string.season_number_key), viewModel.getNumber());
-                startActivity(intent);
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity(), viewModel.getSharedImageView(), viewModel.getSharedImageView().getTransitionName()).toBundle();
+                ActivityCompat.startActivity(getActivity(), intent, bundle);
             }
         });
         recyclerView.setAdapter(adapter);
