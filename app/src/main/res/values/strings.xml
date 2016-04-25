@@ -13,6 +13,8 @@
     <string name="prefs_special_episode_key" translatable="false">prefes_special_episode_key</string>
     <string name="prefs_notification_key" translatable="false">prefes_notification_key</string>
     <string name="main_activity_notificaiton_key" translatable="false">main_activity_from_notification</string>
+    <string name="the_tvdb_api_key" translatable="false">apikey_here</string><!-- -->
+    <string name="banner_ad_unit_id" translatable="false">apikey_here</string>
 
     <string name="app_name">Traxer</string>
     <string name="is_rtl">false</string>
